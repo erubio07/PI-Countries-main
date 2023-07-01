@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    background-color:black;
+    background-image: url("../../../public/fondo.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    gap:10px;
+    min-height: 100vh;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      justify-content: space-around;
+      gap: 5px;
+    }
+  }

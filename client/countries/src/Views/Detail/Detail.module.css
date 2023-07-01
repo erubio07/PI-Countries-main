@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    background-image: url("../../../public/fondo.jpg");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+  
+  .countryContainer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    width: 500px;
+    height: fit-content;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-left: 100px;
+  }
+  
+  .activities {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    width: 500px;
+    height: fit-content;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-right: 100px;
+  }
+  
+  .name {
+    color: rgb(5, 5, 5);
+  }
+  
+  .image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .capital,
+  .h4 {
+    color:rgb(5, 5, 5);
+  }
+  
+  .title {
+    color:rgb(5, 5, 5);
+  }
+  
+  .description {
+    margin-bottom: 10px;
+  }
+  
+  .descriptionName {
+    color: rgb(5, 5, 5);
+    font-weight: bold;
+  }
+  
+  .p {
+    color: rgb(5, 5, 5);
+  }
+
+  /* Estilos para pantallas de hasta 768px de ancho */
+@media screen and (max-width: 768px) {
+    .countryContainer,
+    .activities {
+      width: 100%;
+      margin: 10px;
+    }
+  }
+  
+  /* Estilos para pantallas de hasta 480px de ancho */
+  @media screen and (max-width: 480px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .countryContainer,
+    .activities {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    .name,
+    .capital,
+    .h4,
+    .title,
+    .descriptionName,
+    .p {
+      font-size: 14px;
+    }
+  
+    .image {
+      width: 100%;
+    }
+  }
