@@ -1,0 +1,65 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button {
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-left: 2px;
+    margin: 0 2px;
+    cursor: pointer;
+  }
+  
+  .button.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .button.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+ .buttonPrev {
+  background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+  margin-right: 2px;
+}
+
+.buttonNext {
+  background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+  
+  margin-left: 45px;
+}
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 600px) {
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .button {
+    margin: 4px;
+  }
+
+  .buttonPrev {
+    margin-right: 4px;
+    margin-left: 0;
+  }
+
+  .buttonNext {
+    margin-left: 4px;
+    margin-right: 0;
+  }
+}
