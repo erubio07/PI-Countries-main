@@ -45,3 +45,8 @@
     left: 20px; /* Ajusta la posición horizontal según tus necesidades */
     cursor: pointer;
   }
+
+  .globe:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+  }
