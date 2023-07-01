@@ -16,6 +16,7 @@
   }
   
   .link {
+    margin-top: 5px;
     margin-bottom: 10px;
     color: #333;
     text-decoration: none;
@@ -28,4 +29,19 @@
   
   .link:hover {
     background-color: #0056b3; 
+  }
+
+  .globeContainer {
+    position: relative;
+    margin-left: -200px;
+    margin-top: -10px;
+  }
+
+  .globe {
+    width: 40px; /* Ajusta el tamaño según tus necesidades */
+    height: 40px;
+    position: absolute;
+    top: 12px; /* Ajusta la posición vertical según tus necesidades */
+    left: 20px; /* Ajusta la posición horizontal según tus necesidades */
+    cursor: pointer;
   }
