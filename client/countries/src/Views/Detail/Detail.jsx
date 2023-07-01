@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../Redux/actions";
 import styles from "./Detail.module.css";
@@ -8,8 +8,9 @@ function Detail() {
   const { id } = useParams();
   // console.log(id);
   const country = useSelector((state) => state.detail);
-  // console.log(country);
+  console.log(country);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDetail(id));
@@ -28,20 +29,23 @@ function Detail() {
       </div>
       <div className={styles.activities}>
         <h2 className={styles.title}>Actividades Turísticas</h2>
-        {country.activities.length ? (
+        {country.activities && country.activities.length ? (
           country.activities.map((e) => {
             return (
-              <div className={styles.description}>
-                <h4 className={styles.descriptionName}>{e.name}</h4>
-                <p className={styles.p}>Dificulty: {e.dificulty}</p>
-                <p className={styles.p}>Duration: {e.duration} hrs</p>
-                <p className={styles.p}>Season: {e.season}</p>
+              <div>
+                <h4>{e.name}</h4>
+                <p>Dificulty: {e.difficulty}</p>
+                <p>Duration: {e.duration} hrs</p>
+                <p>Season: {e.season}</p>
               </div>
             );
           })
         ) : (
-          <p className={styles.p}>No Hay Actividades para este País</p>
+          <p>No hay actividades para este País</p>
         )}
+        <button className={styles.button} onClick={() => navigate(-1)}>
+          Volver
+        </button>
       </div>
     </div>
   );
