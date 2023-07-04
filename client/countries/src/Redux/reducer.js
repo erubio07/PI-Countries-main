@@ -1,4 +1,9 @@
-import { GET_ALL_COUNTRIES, GET_DETAIL, GET_COUNTRY_BY_NAME } from "./types";
+import {
+  GET_ALL_COUNTRIES,
+  GET_DETAIL,
+  GET_COUNTRY_BY_NAME,
+  FILTER_BY_CONTINENT,
+} from "./types";
 
 const initialState = {
   countries: [],
@@ -23,6 +28,16 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: action.payload,
+      };
+
+    case FILTER_BY_CONTINENT:
+      let filteredCountries =
+        action.payload === "All"
+          ? state.countries
+          : state.countries.filter((c) => c.continent === action.payload);
+      return {
+        ...state,
+        countries: filteredCountries,
       };
     default:
       return state;

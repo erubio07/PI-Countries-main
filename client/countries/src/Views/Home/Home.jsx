@@ -1,7 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCountries, getCountryByName } from "../../Redux/actions";
+import {
+  getAllCountries,
+  getCountryByName,
+  filterByContinent,
+} from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
@@ -29,6 +33,16 @@ export const Home = () => {
     }
     dispatch(getCountryByName(input));
     setInput("");
+    setCurrentPage(1);
+  };
+
+  const handleRefresh = () => {
+    dispatch(getAllCountries());
+  };
+
+  const hadleFilterByContinent = (e) => {
+    dispatch(filterByContinent(e));
+    setCurrentPage(1);
   };
 
   useEffect(() => {
@@ -37,7 +51,13 @@ export const Home = () => {
 
   return (
     <div className={styles.container}>
-      <Filter searchHandle={searchHandle} handleChange={handleChange} />
+      <Filter
+        searchHandle={searchHandle}
+        handleChange={handleChange}
+        handleRefresh={handleRefresh}
+        input={input}
+        hadleFilterByContinent={hadleFilterByContinent}
+      />
       {countries
         .map((c) => {
           return (

@@ -1,4 +1,9 @@
-import { GET_ALL_COUNTRIES, GET_DETAIL, GET_COUNTRY_BY_NAME } from "./types";
+import {
+  GET_ALL_COUNTRIES,
+  GET_DETAIL,
+  GET_COUNTRY_BY_NAME,
+  FILTER_BY_CONTINENT,
+} from "./types";
 import axios from "axios";
 
 export const getAllCountries = () => {
@@ -30,5 +35,12 @@ export const getCountryByName = (name) => {
       type: GET_COUNTRY_BY_NAME,
       payload: country.data,
     });
+  };
+};
+
+export const filterByContinent = (continent) => {
+  return {
+    type: FILTER_BY_CONTINENT,
+    payload: continent,
   };
 };
