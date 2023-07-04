@@ -1,2 +1,3 @@
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_DETAIL = "GET_DETAIL";
+export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";

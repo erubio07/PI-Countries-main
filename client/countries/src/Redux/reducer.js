@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_DETAIL } from "./types";
+import { GET_ALL_COUNTRIES, GET_DETAIL, GET_COUNTRY_BY_NAME } from "./types";
 
 const initialState = {
   countries: [],
@@ -17,6 +17,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+      };
+
+    case GET_COUNTRY_BY_NAME:
+      return {
+        ...state,
+        countries: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_DETAIL } from "./types";
+import { GET_ALL_COUNTRIES, GET_DETAIL, GET_COUNTRY_BY_NAME } from "./types";
 import axios from "axios";
 
 export const getAllCountries = () => {
@@ -16,6 +16,18 @@ export const getDetail = (id) => {
     let country = await axios.get(`http://localhost:3001/countries/${id}`);
     return dispatch({
       type: GET_DETAIL,
+      payload: country.data,
+    });
+  };
+};
+
+export const getCountryByName = (name) => {
+  return async function (dispatch) {
+    let country = await axios.get(
+      `http://localhost:3001/countries/?name=${name}`
+    );
+    return dispatch({
+      type: GET_COUNTRY_BY_NAME,
       payload: country.data,
     });
   };
