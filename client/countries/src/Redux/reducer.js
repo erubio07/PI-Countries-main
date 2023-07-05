@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   countries: [],
+  countriesFilter: [],
   detail: {},
 };
 
@@ -25,20 +26,29 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_COUNTRY_BY_NAME:
+      console.log(action.payload);
       return {
         ...state,
         countries: action.payload,
       };
 
     case FILTER_BY_CONTINENT:
-      let filteredCountries =
-        action.payload === "All"
-          ? state.countries
-          : state.countries.filter((c) => c.continent === action.payload);
-      return {
-        ...state,
-        countries: filteredCountries,
-      };
+      console.log(action.payload);
+      if (action.payload === "All") {
+        return {
+          ...state,
+          countries: state.countries,
+        };
+      } else {
+        const data = state.countries.filter(
+          (c) => c.continent === action.payload
+        );
+        console.log(data);
+        return {
+          ...state,
+          countries: data,
+        };
+      }
     default:
       return state;
   }
