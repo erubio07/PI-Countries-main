@@ -39,6 +39,7 @@ export const getCountryByName = (name) => {
 };
 
 export const filterByContinent = (continent) => {
+  console.log(continent);
   return {
     type: FILTER_BY_CONTINENT,
     payload: continent,

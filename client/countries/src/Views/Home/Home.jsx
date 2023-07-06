@@ -15,6 +15,8 @@ export const Home = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   // console.log(countries);
+  const countriesFilter = useSelector((state) => state.countriesFilter);
+  console.log(countriesFilter);
   const totalCountries = countries.length;
   // console.log(totalCountries);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -41,7 +43,7 @@ export const Home = () => {
   };
 
   const hadleFilterByContinent = (e) => {
-    dispatch(filterByContinent(e));
+    dispatch(filterByContinent(e.target.value));
     setCurrentPage(1);
   };
 
@@ -58,7 +60,7 @@ export const Home = () => {
         input={input}
         hadleFilterByContinent={hadleFilterByContinent}
       />
-      {countries
+      {countriesFilter
         .map((c) => {
           return (
             <Card

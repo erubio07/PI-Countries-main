@@ -17,6 +17,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: action.payload,
+        countriesFilter: action.payload,
       };
 
     case GET_DETAIL:
@@ -26,27 +27,29 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_COUNTRY_BY_NAME:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         countries: action.payload,
       };
 
     case FILTER_BY_CONTINENT:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload === "All") {
         return {
           ...state,
           countries: state.countries,
+          countriesFilter: state.countries,
         };
       } else {
         const data = state.countries.filter(
           (c) => c.continent === action.payload
         );
-        console.log(data);
+        // console.log(data);
         return {
           ...state,
-          countries: data,
+          countries: state.countries,
+          countriesFilter: data,
         };
       }
     default:
