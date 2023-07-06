@@ -5,6 +5,7 @@ import {
   getAllCountries,
   getCountryByName,
   filterByContinent,
+  getAllActivities,
 } from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
@@ -16,7 +17,9 @@ export const Home = () => {
   const countries = useSelector((state) => state.countries);
   // console.log(countries);
   const countriesFilter = useSelector((state) => state.countriesFilter);
-  console.log(countriesFilter);
+  // console.log(countriesFilter);
+  const activities = useSelector((state) => state.activities);
+  console.log(activities);
   const totalCountries = countries.length;
   // console.log(totalCountries);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -40,6 +43,7 @@ export const Home = () => {
 
   const handleRefresh = () => {
     dispatch(getAllCountries());
+    dispatch(getAllActivities());
   };
 
   const hadleFilterByContinent = (e) => {

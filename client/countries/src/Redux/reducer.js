@@ -3,12 +3,14 @@ import {
   GET_DETAIL,
   GET_COUNTRY_BY_NAME,
   FILTER_BY_CONTINENT,
+  GET_ALL_ACTIVITIES,
 } from "./types";
 
 const initialState = {
   countries: [],
   countriesFilter: [],
   detail: {},
+  activities: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -52,6 +54,13 @@ function rootReducer(state = initialState, action) {
           countriesFilter: data,
         };
       }
+
+    case GET_ALL_ACTIVITIES:
+      console.log(action.payload);
+      return {
+        ...state,
+        activities: action.payload,
+      };
     default:
       return state;
   }

@@ -41,6 +41,7 @@ function Filter({
           <option value={"Antarctica"}>Antarctica</option>
         </select>
       </div>
+      <div>Filtrar por Actividad</div>
     </div>
   );
 }

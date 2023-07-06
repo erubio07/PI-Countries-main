@@ -20,12 +20,12 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 const fillCountries = require("./src/Controllers/fillCountries.js");
-const fillActivities = require("./src/Controllers/fillActivities.js");
+// const fillActivities = require("./src/Controllers/fillActivities.js");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   fillCountries();
-  fillActivities();
+  // fillActivities();
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
