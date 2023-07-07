@@ -38,6 +38,8 @@ export default function Activity() {
     season: "",
     countries: [],
   });
+
+  console.log(input);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
