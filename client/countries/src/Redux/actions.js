@@ -6,6 +6,7 @@ import {
   GET_ALL_ACTIVITIES,
   SORT_BY_NAME,
   SORT_BY_POPULATION,
+  POST_ACTIVITY,
 } from "./types";
 import axios from "axios";
 
@@ -49,6 +50,13 @@ export const getAllActivities = () => {
       type: GET_ALL_ACTIVITIES,
       payload: activities.data,
     });
+  };
+};
+
+export const postActivity = (info) => {
+  return async function (dispatch) {
+    let activity = await axios.post("http://localhost:3001/activities", info);
+    return activity;
   };
 };
 

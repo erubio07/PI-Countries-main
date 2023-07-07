@@ -4,6 +4,7 @@ import { Home } from "./Views/Home/Home";
 import Landing from "./Views/Landing/Landing";
 import Detail from "./Views/Detail/Detail";
 import Navbar from "./Components/Navbar/Navbar";
+import Activity from "./Views/Activity/Activity";
 
 function App() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function App() {
         <Route extact path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/countries/:id" element={<Detail />} />
+        <Route path="/activity" element={<Activity />} />
       </Routes>
     </div>
   );

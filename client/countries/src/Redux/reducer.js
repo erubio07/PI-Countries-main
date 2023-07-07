@@ -6,6 +6,7 @@ import {
   GET_ALL_ACTIVITIES,
   SORT_BY_NAME,
   SORT_BY_POPULATION,
+  POST_ACTIVITY,
 } from "./types";
 
 const initialState = {
@@ -37,6 +38,18 @@ function rootReducer(state = initialState, action) {
         countriesFilter: action.payload,
       };
 
+    case GET_ALL_ACTIVITIES:
+      // console.log(action.payload);
+      return {
+        ...state,
+        activities: action.payload,
+      };
+
+    case POST_ACTIVITY:
+      return {
+        ...state,
+      };
+
     case FILTER_BY_CONTINENT:
       // console.log(action.payload);
       if (action.payload === "All") {
@@ -56,13 +69,6 @@ function rootReducer(state = initialState, action) {
           countriesFilter: data,
         };
       }
-
-    case GET_ALL_ACTIVITIES:
-      // console.log(action.payload);
-      return {
-        ...state,
-        activities: action.payload,
-      };
 
     case SORT_BY_NAME:
       const sortedCities =
