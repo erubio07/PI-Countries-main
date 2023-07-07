@@ -4,6 +4,8 @@ import {
   GET_COUNTRY_BY_NAME,
   FILTER_BY_CONTINENT,
   GET_ALL_ACTIVITIES,
+  SORT_BY_NAME,
+  SORT_BY_POPULATION,
 } from "./types";
 import axios from "axios";
 
@@ -42,7 +44,7 @@ export const getCountryByName = (name) => {
 export const getAllActivities = () => {
   return async function (dispatch) {
     let activities = await axios.get("http://localhost:3001/activities");
-    console.log(activities);
+    // console.log(activities);
     return dispatch({
       type: GET_ALL_ACTIVITIES,
       payload: activities.data,
@@ -55,5 +57,21 @@ export const filterByContinent = (continent) => {
   return {
     type: FILTER_BY_CONTINENT,
     payload: continent,
+  };
+};
+
+export const sortByName = (value) => {
+  // console.log(value);
+  return {
+    type: SORT_BY_NAME,
+    payload: value,
+  };
+};
+
+export const sortByPopulation = (value) => {
+  // console.log(value);
+  return {
+    type: SORT_BY_POPULATION,
+    payload: value,
   };
 };

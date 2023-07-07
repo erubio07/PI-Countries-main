@@ -7,6 +7,8 @@ function Filter({
   handleRefresh,
   input,
   hadleFilterByContinent,
+  handleSortByName,
+  handleSortByPopulation,
 }) {
   return (
     <div className={styles.container}>
@@ -24,24 +26,77 @@ function Filter({
           Refresh
         </button>
       </div>
-      <div>
-        Filtrar por Continente
+      <div className={styles.sortContainer}>
+        Continente
         <select
+          className={styles.select}
           onChange={(e) => {
             hadleFilterByContinent(e);
           }}
         >
-          <option value={"All"}>All </option>
-          <option value={"South America"}>South America</option>
-          <option value={"North America"}>North America</option>
-          <option value={"Africa"}>Africa</option>
-          <option value={"Asia"}>Asia</option>
-          <option value={"Europe"}>Europe</option>
-          <option value={"Oceania"}>Oceanía</option>
-          <option value={"Antarctica"}>Antarctica</option>
+          <option className={styles.option} value={"All"}>
+            All{" "}
+          </option>
+          <option className={styles.option} value={"South America"}>
+            South America
+          </option>
+          <option className={styles.option} value={"North America"}>
+            North America
+          </option>
+          <option className={styles.option} value={"Africa"}>
+            Africa
+          </option>
+          <option className={styles.option} value={"Asia"}>
+            Asia
+          </option>
+          <option className={styles.option} value={"Europe"}>
+            Europe
+          </option>
+          <option className={styles.option} value={"Oceania"}>
+            Oceanía
+          </option>
+          <option className={styles.option} value={"Antarctica"}>
+            Antarctica
+          </option>
         </select>
       </div>
-      <div>Filtrar por Actividad</div>
+      <div className={styles.sortContainer}>
+        Nombre
+        <select
+          className={styles.select}
+          onChange={(e) => {
+            handleSortByName(e);
+          }}
+        >
+          <option className={styles.option} value={"-"}>
+            -
+          </option>
+          <option className={styles.option} value={"A-Z"}>
+            A-Z
+          </option>
+          <option className={styles.option} value={"Z-A"}>
+            Z-A
+          </option>
+        </select>
+      </div>
+      <div className={styles.sortContainer}>
+        Población
+        <select
+          onChange={(e) => {
+            handleSortByPopulation(e);
+          }}
+        >
+          <option className={styles.option} value={"-"}>
+            -
+          </option>
+          <option className={styles.option} value={"ASC"}>
+            ASC
+          </option>
+          <option className={styles.option} value={"DESC"}>
+            DESC
+          </option>
+        </select>
+      </div>
     </div>
   );
 }

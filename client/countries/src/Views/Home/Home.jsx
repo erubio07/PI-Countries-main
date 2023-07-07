@@ -6,6 +6,8 @@ import {
   getCountryByName,
   filterByContinent,
   getAllActivities,
+  sortByName,
+  sortByPopulation,
 } from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
@@ -19,7 +21,7 @@ export const Home = () => {
   const countriesFilter = useSelector((state) => state.countriesFilter);
   // console.log(countriesFilter);
   const activities = useSelector((state) => state.activities);
-  console.log(activities);
+  // console.log(activities);
   const totalCountries = countries.length;
   // console.log(totalCountries);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -27,6 +29,7 @@ export const Home = () => {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
+  const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -51,6 +54,16 @@ export const Home = () => {
     setCurrentPage(1);
   };
 
+  const handleSortByName = (e) => {
+    dispatch(sortByName(e.target.value));
+    forceUpdate();
+  };
+
+  const handleSortByPopulation = (e) => {
+    dispatch(sortByPopulation(e.target.value));
+    forceUpdate();
+  };
+
   useEffect(() => {
     dispatch(getAllCountries());
   }, [dispatch]);
@@ -63,6 +76,8 @@ export const Home = () => {
         handleRefresh={handleRefresh}
         input={input}
         hadleFilterByContinent={hadleFilterByContinent}
+        handleSortByName={handleSortByName}
+        handleSortByPopulation={handleSortByPopulation}
       />
       {countriesFilter
         .map((c) => {
