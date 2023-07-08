@@ -34,8 +34,8 @@ function Detail() {
             return (
               <div>
                 <h4>{e.name}</h4>
-                <p>Dificulty: {e.difficulty}</p>
-                <p>Duration: {e.duration} hrs</p>
+                <p>Dificultad: {e.dificulty}</p>
+                <p>Duración: {e.duration} hrs</p>
                 <p>Season: {e.season}</p>
               </div>
             );

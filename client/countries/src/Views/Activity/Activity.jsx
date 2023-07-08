@@ -39,7 +39,7 @@ export default function Activity() {
     countries: [],
   });
 
-  console.log(input);
+  // console.log(input);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -71,6 +71,14 @@ export default function Activity() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !input.name ||
+      !input.dificulty ||
+      !input.duration ||
+      !input.season ||
+      !input.countries
+    )
+      return alert("Hay campos sin completar");
     dispatch(postActivity(input));
     setInput({
       name: "",
@@ -78,6 +86,14 @@ export default function Activity() {
       duration: "",
       season: "",
       countries: [],
+    });
+  };
+
+  // console.log(input.countries);
+  const onClose = (c) => {
+    setInput({
+      ...input,
+      countries: input.countries.filter((i) => i !== c),
     });
   };
 
@@ -98,6 +114,7 @@ export default function Activity() {
           onChange={handleChange}
           placeholder="Nombre"
         />
+        {errors.name && <p className={styles.error}>{errors.name}</p>}
         <label className={styles.label}>Dificultad:</label>
         <input
           className={styles.input}
@@ -107,6 +124,7 @@ export default function Activity() {
           onChange={handleChange}
           placeholder="Dificultad"
         />
+        {errors.dificulty && <p className={styles.error}>{errors.dificulty}</p>}
         <label className={styles.label}>Duracion:</label>
         <input
           className={styles.input}
@@ -116,14 +134,17 @@ export default function Activity() {
           onChange={handleChange}
           placeholder="Duracion"
         />
+        {errors.duration && <p className={styles.error}>{errors.duration}</p>}
 
         <label className={styles.label}>Temporada:</label>
         <select className={styles.select} onChange={handleSeason}>
+          <option value="vacio">Seleccione una temporada</option>
           <option value="Verano">Verano</option>
           <option value="Otoño">Otoño</option>
           <option value="Invierno">Invierno</option>
           <option value="Primavera">Primavera</option>
         </select>
+        {errors.season && <p className={styles.error}>{errors.season}</p>}
 
         <label className={styles.label}>Paises:</label>
         <div>
@@ -132,7 +153,11 @@ export default function Activity() {
               {input.countries.map((i) => (
                 <div>
                   {i}
-                  <button onClick={() => alert("hola")} type="button">
+                  <button
+                    className={styles.close}
+                    onClick={() => onClose(i)}
+                    type="button"
+                  >
                     X
                   </button>
                 </div>
@@ -141,12 +166,14 @@ export default function Activity() {
           </ul>
         </div>
         <select className={styles.select} onChange={handleCountries}>
+          <option value="vacio">Seleccione un pais</option>
           {countries.map((country) => (
             <option value={country.id} key={country.id}>
-              {country.id}
+              {country.name}
             </option>
           ))}
         </select>
+        {errors.countries && <p className={styles.error}>{errors.countries}</p>}
 
         <button className={styles.button}>Crear Actividad</button>
       </form>

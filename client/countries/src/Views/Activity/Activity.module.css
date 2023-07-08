@@ -2,7 +2,7 @@
     background-image: url('./fondo.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,9 +22,16 @@
   .input,
   .select {
     margin-top: 0.5rem;
-    width: 300px;
+    max-width: 100%;
     padding: 0.5rem;
     border-radius: 5px;
+  }
+
+  .error{
+    background-color: black;
+    font-size: 15px;
+    color: red;
+    border-radius: 3px;
   }
   
   .button {
@@ -38,5 +45,21 @@
   }
   
   .button:hover {
+    background-color: #45a049;
+  }
+
+  .close{
+    margin-left: 6px;
+    margin-top: 1px;
+    padding: 3px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    
+  }
+
+  .close:hover {
     background-color: #45a049;
   }
