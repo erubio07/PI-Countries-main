@@ -9,6 +9,8 @@ function Filter({
   hadleFilterByContinent,
   handleSortByName,
   handleSortByPopulation,
+  activities,
+  handleFIlterByActivities,
 }) {
   return (
     <div className={styles.container}>
@@ -82,6 +84,7 @@ function Filter({
       <div className={styles.sortContainer}>
         Población
         <select
+          className={styles.select}
           onChange={(e) => {
             handleSortByPopulation(e);
           }}
@@ -95,6 +98,22 @@ function Filter({
           <option className={styles.option} value={"DESC"}>
             DESC
           </option>
+        </select>
+      </div>
+      <div>
+        Actividades
+        <select
+          className={styles.select}
+          onChange={(e) => handleFIlterByActivities(e)}
+        >
+          <option className={styles.option} value={"-"}>
+            -
+          </option>
+          {activities.map((a) => (
+            <option value={a.name} key={a.id} className={styles.option}>
+              {a.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>

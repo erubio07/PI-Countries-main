@@ -7,6 +7,7 @@ import {
   SORT_BY_NAME,
   SORT_BY_POPULATION,
   POST_ACTIVITY,
+  FILTER_BY_ACTIVITY,
 } from "./types";
 import axios from "axios";
 
@@ -65,6 +66,13 @@ export const filterByContinent = (continent) => {
   return {
     type: FILTER_BY_CONTINENT,
     payload: continent,
+  };
+};
+
+export const filterByActivities = (activity) => {
+  return {
+    type: FILTER_BY_ACTIVITY,
+    payload: activity,
   };
 };
 

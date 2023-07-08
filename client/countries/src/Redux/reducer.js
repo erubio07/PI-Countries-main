@@ -7,6 +7,7 @@ import {
   SORT_BY_NAME,
   SORT_BY_POPULATION,
   POST_ACTIVITY,
+  FILTER_BY_ACTIVITY,
 } from "./types";
 
 const initialState = {
@@ -67,6 +68,27 @@ function rootReducer(state = initialState, action) {
           ...state,
           countries: state.countries,
           countriesFilter: data,
+        };
+      }
+
+    case FILTER_BY_ACTIVITY:
+      console.log(state.countries);
+      console.log(state.activities);
+      if (action.payload === "-") {
+        return {
+          ...state,
+          countries: state.countries,
+          countriesFilter: state.countries,
+        };
+      } else {
+        const activityData = state.countries.filter((c) =>
+          c.activities?.some((a) => a.name === action.payload)
+        );
+        console.log(activityData);
+        return {
+          ...state,
+          countries: state.countries,
+          countriesFilter: activityData,
         };
       }
 

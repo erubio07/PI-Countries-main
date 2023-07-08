@@ -2,6 +2,7 @@ const {
   getCountriesByName,
   getAllCountries,
   getCountryId,
+  getCountriesByActivities,
 } = require("../Controllers/countriesController");
 
 const getCountriesHandler = async (req, res) => {
@@ -29,4 +30,18 @@ const getCountryById = async (req, res) => {
   }
 };
 
-module.exports = { getCountriesHandler, getCountryById };
+const getCountriesActivities = async (req, res) => {
+  const { activity } = req.params;
+  try {
+    const countries = await getCountriesByActivities(activity);
+    res.status(200).json(countries);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  getCountriesHandler,
+  getCountryById,
+  getCountriesActivities,
+};

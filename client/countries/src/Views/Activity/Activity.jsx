@@ -151,7 +151,7 @@ export default function Activity() {
           <ul>
             <li>
               {input.countries.map((i) => (
-                <div>
+                <div key={i}>
                   {i}
                   <button
                     className={styles.close}

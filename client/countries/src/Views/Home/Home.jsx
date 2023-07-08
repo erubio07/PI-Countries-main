@@ -8,6 +8,7 @@ import {
   getAllActivities,
   sortByName,
   sortByPopulation,
+  filterByActivities,
 } from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
@@ -54,6 +55,11 @@ export const Home = () => {
     setCurrentPage(1);
   };
 
+  const handleFIlterByActivities = (e) => {
+    dispatch(filterByActivities(e.target.value));
+    setCurrentPage(1);
+  };
+
   const handleSortByName = (e) => {
     dispatch(sortByName(e.target.value));
     forceUpdate();
@@ -66,6 +72,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getAllCountries());
+    dispatch(getAllActivities());
   }, [dispatch]);
 
   return (
@@ -78,6 +85,8 @@ export const Home = () => {
         hadleFilterByContinent={hadleFilterByContinent}
         handleSortByName={handleSortByName}
         handleSortByPopulation={handleSortByPopulation}
+        activities={activities}
+        handleFIlterByActivities={handleFIlterByActivities}
       />
       {countriesFilter
         .map((c) => {

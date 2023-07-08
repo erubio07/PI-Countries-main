@@ -29,8 +29,25 @@ const getCountryId = async (id) => {
   return country;
 };
 
+// crea un funcion que busque los paises por actividad
+
+const getCountriesByActivities = async (activity) => {
+  const countries = await Country.findAll({
+    include: [
+      {
+        model: Activity,
+        where: {
+          name: activity,
+        },
+      },
+    ],
+  });
+  return countries;
+};
+
 module.exports = {
   getCountriesByName,
   getAllCountries,
   getCountryId,
+  getCountriesByActivities,
 };
