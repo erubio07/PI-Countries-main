@@ -15,6 +15,6 @@ router.get("/", getCountriesHandler);
 
 router.get("/:id", getCountryById);
 
-router.get("/activity", getCountriesActivities);
+router.get("/activities/:activity", getCountriesActivities);
 
 module.exports = router;

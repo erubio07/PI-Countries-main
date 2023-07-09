@@ -43,6 +43,31 @@ const getCountriesByActivities = async (activity) => {
     ],
   });
   return countries;
+
+  // try {
+  //   const countries = await Country.findAll({
+  //     include: [
+  //       {
+  //         model: Activity,
+  //       },
+  //     ],
+  //   });
+
+  //   let data = countries.filter((c) => {
+  //     let validation = false;
+  //     c.activities.forEach((x) => {
+  //       if (x.name === activity) {
+  //         validation = true;
+  //       }
+  //     });
+  //     if (validation === true) return true;
+  //     return false;
+  //   });
+  //   return data;
+  //   // return countries;
+  // } catch (error) {
+  //   return error.message;
+  // }
 };
 
 module.exports = {
