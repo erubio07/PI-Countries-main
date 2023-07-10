@@ -32,7 +32,7 @@ const getCountryById = async (req, res) => {
 
 const getCountriesActivities = async (req, res) => {
   const { activity } = req.params;
-  console.log(activity, "msmsmsmsmsmsms");
+  // console.log(activity, "msmsmsmsmsmsms");
   try {
     const countries = await getCountriesByActivities(activity);
     res.status(200).json(countries);

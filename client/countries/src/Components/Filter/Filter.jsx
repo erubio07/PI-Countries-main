@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Filter.module.css";
+import refresh from "./refresh-icon.png";
 
 function Filter({
   searchHandle,
@@ -24,8 +25,8 @@ function Filter({
         <button className={styles.button} onClick={(e) => searchHandle(e)}>
           Buscar
         </button>
-        <button className={styles.button} onClick={(e) => handleRefresh(e)}>
-          Refresh
+        <button className={styles.refresh} onClick={(e) => handleRefresh(e)}>
+          <img className={styles.img} src={refresh} alt="refresh"/>
         </button>
       </div>
       <div className={styles.sortContainer}>
@@ -100,7 +101,7 @@ function Filter({
           </option>
         </select>
       </div>
-      <div>
+      <div className={styles.sortContainer}>
         Actividades
         <select
           className={styles.select}

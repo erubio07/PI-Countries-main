@@ -33,7 +33,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_COUNTRY_BY_NAME:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         countriesFilter: action.payload,
@@ -72,25 +72,12 @@ function rootReducer(state = initialState, action) {
       }
 
     case FILTER_BY_ACTIVITY:
-      console.log(state.countries);
-      console.log(state.activities);
-      if (action.payload === "-") {
-        return {
-          ...state,
-          countries: state.countries,
-          countriesFilter: state.countries,
-        };
-      } else {
-        const activityData = state.countries.filter((c) =>
-          c.activities?.some((a) => a.name === action.payload)
-        );
-        console.log(activityData);
-        return {
-          ...state,
-          countries: state.countries,
-          countriesFilter: activityData,
-        };
-      }
+      // console.log(action.payload);
+      return {
+        ...state,
+        countries: state.countries,
+        countriesFilter: action.payload,
+      };
 
     case SORT_BY_NAME:
       const sortedCities =

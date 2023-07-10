@@ -8,7 +8,7 @@ function Detail() {
   const { id } = useParams();
   // console.log(id);
   const country = useSelector((state) => state.detail);
-  console.log(country);
+  // console.log(country);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ function Detail() {
         {country.activities && country.activities.length ? (
           country.activities.map((e) => {
             return (
-              <div>
+              <div key={e.id}>
                 <h4>{e.name}</h4>
                 <p>Dificultad: {e.dificulty}</p>
                 <p>Duración: {e.duration} hrs</p>

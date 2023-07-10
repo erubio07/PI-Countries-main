@@ -69,10 +69,17 @@ export const filterByContinent = (continent) => {
   };
 };
 
-export const filterByActivities = (activity) => {
-  return {
-    type: FILTER_BY_ACTIVITY,
-    payload: activity,
+export const filterByActivities = (value) => {
+  // console.log(value);
+  return async function (dispatch) {
+    let countries = await axios.get(
+      `http://localhost:3001/countries/activities/${value}`
+    );
+    console.log(countries.data);
+    return dispatch({
+      type: FILTER_BY_ACTIVITY,
+      payload: countries.data,
+    });
   };
 };
 

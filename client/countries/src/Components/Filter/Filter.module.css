@@ -1,6 +1,88 @@
 .container {
+  display: flex;
   width: 96%;
-  height: 80px;
+  height: fit-content;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #f2f2f2;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.refresh {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+}
+
+.sortContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.option {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inputContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button,
+  .refresh {
+    width: 100%;
+  }
+
+  .select {
+    width: 100%;
+  }
+}
+
+
+/* .container {
+  width: 96%;
+  height: auto;
   background-color: #f1f1f1;
   margin-top: 10px;
   padding: 10px;
@@ -37,6 +119,19 @@
     background-color: #0056b3;
   }
 
+  .refresh{
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .img {
+    margin-left: -5px;
+    width: 20px;
+    height: 20px;
+  }
+
   .sortContainer {
     display: flex;
     align-items: center;
@@ -63,7 +158,7 @@
 
    
   /* Estilos para dispositivos móviles */
-  @media (max-width: 600px) {
+  /* @media (max-width: 600px) {
     .inputContainer {
       flex-direction: column;
       align-items: stretch;
@@ -73,4 +168,4 @@
       margin-right: 0;
       margin-bottom: 10px;
     }
-  }
+  } */ 
