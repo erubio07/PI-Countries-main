@@ -12,6 +12,17 @@ const getAllActivities = async () => {
   return activities;
 };
 
+const getActivityById = async (id) => {
+  const activity = await Activity.findByPk(id, {
+    include: [
+      {
+        model: Country,
+      },
+    ],
+  });
+  return activity;
+};
+
 const postActivities = async (name, dificulty, duration, season, countries) => {
   if ((name, dificulty, duration, season, countries)) {
     const activity = await Activity.create({
@@ -28,7 +39,31 @@ const postActivities = async (name, dificulty, duration, season, countries) => {
   }
 };
 
+// const updateaActivity = async (
+//   name,
+//   dificulty,
+//   duration,
+//   season,
+//   countries
+// ) => {
+//   if ((name, dificulty, duration, season, countries)) {
+//     const update = await Activity.update({
+//       name,
+//       dificulty,
+//       duration,
+//       season,
+//       countries,
+//     });
+//     await update.addCountry(countries);
+//     return update;
+//   } else {
+//     return "Hay campos incompleto";
+//   }
+// };
+
 module.exports = {
   getAllActivities,
   postActivities,
+  getActivityById,
+  // updateaActivity,
 };
