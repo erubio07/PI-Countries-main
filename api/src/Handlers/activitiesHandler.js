@@ -47,7 +47,7 @@ const putActivity = async (req, res) => {
   try {
     let activity = await Activity.findByPk(id);
     // console.log(activity);
-    console.log(countries);
+    // console.log(countries);
     let activityUpdated = await activity.update({
       name,
       dificulty,
@@ -55,7 +55,7 @@ const putActivity = async (req, res) => {
       season,
       countries,
     });
-    await activityUpdated.addCountry(countries);
+    await activityUpdated.setCountries(countries);
     res.status(200).send("Actividad actualizada con éxito");
   } catch (error) {
     res.status(400).json({ error: error.messaje });
