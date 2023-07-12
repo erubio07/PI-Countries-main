@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { getAllActivities } from "../../Redux/actions";
 import styles from "./Activities.module.css";
+import icon from "./update.png";
 
 function Activities() {
   const activities = useSelector((state) => state.activities);
@@ -39,7 +40,7 @@ function Activities() {
                 </li>
               </ul>
               <NavLink className={styles.button} to={"/update"}>
-                Actualizar
+                <img className={styles.update} src={icon} alt="update" />
               </NavLink>
             </div>
           );
