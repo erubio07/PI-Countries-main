@@ -19,7 +19,7 @@ function App() {
         <Route path="/countries/:id" element={<Detail />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/activities" element={<Activities />} />
-        <Route path="/update" element={<Update />} />
+        <Route path="/:id/update" element={<Update />} />
       </Routes>
     </div>
   );

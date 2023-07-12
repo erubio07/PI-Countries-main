@@ -39,7 +39,7 @@ function Activities() {
                   )}
                 </li>
               </ul>
-              <NavLink className={styles.button} to={"/update"}>
+              <NavLink className={styles.button} to={`/${a.id}/update`}>
                 <img className={styles.update} src={icon} alt="update" />
               </NavLink>
             </div>

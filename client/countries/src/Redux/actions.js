@@ -74,7 +74,7 @@ export const filterByActivities = (value) => {
   if (value === "-") {
     return async function (dispatch) {
       let allCountries = await axios.get("http://localhost:3001/countries");
-      console.log(allCountries);
+      // console.log(allCountries);
       return dispatch({
         type: FILTER_BY_ACTIVITY,
         payload: allCountries.data,

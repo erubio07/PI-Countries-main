@@ -72,7 +72,7 @@ function rootReducer(state = initialState, action) {
       }
 
     case FILTER_BY_ACTIVITY:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         countries: state.countries,
