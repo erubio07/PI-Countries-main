@@ -4,20 +4,22 @@
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: flex-start;
-    /* max-width: 1330px; */
+    max-width: 1346px;
     margin: 0 auto;
     background-color: #020202;
     padding: 10px;
     border-radius: 1px;
     opacity: 90%;
+    /* overflow-x: auto; */
     /* z-index: 999; Asegura que la barra de navegación esté en la parte superior */
   }
   
   .link {
     margin-top: 5px;
   margin-bottom: 5px;
+  margin-left: 350px;
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
@@ -38,6 +40,7 @@
   }
 
   .globe {
+    margin-left: 190px;
     width: 40px; /* Ajusta el tamaño según tus necesidades */
     height: 40px;
     position: absolute;
@@ -49,4 +52,26 @@
   .globe:hover{
     transform: scale(1.05);
     cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .link {
+      margin-left: 0;
+    }
+    
+    .globeContainer {
+      margin-left: 0;
+      margin-top: 0;
+    }
+    
+    .globe {
+      margin-left: 0;
+      position: static;
+      transform: none;
+    }
   }
