@@ -39,6 +39,14 @@ const postActivities = async (name, dificulty, duration, season, countries) => {
   }
 };
 
+const deleteActivity = async (id) => {
+  await Activity.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
 // const updateaActivity = async (
 //   name,
 //   dificulty,
@@ -66,4 +74,5 @@ module.exports = {
   postActivities,
   getActivityById,
   // updateaActivity,
+  deleteActivity,
 };

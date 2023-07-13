@@ -3,6 +3,7 @@ const {
   postActivities,
   getActivityById,
   //   updateaActivity
+  deleteActivity,
 } = require("../Controllers/activitiesController");
 const { Country, Activity } = require("../db");
 
@@ -62,4 +63,20 @@ const putActivity = async (req, res) => {
   }
 };
 
-module.exports = { getActivities, postActivity, activityById, putActivity };
+const delActivity = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteActivity(id);
+    res.status(200).send("Actividad eliminada con exito");
+  } catch (error) {
+    res.status(400).json({ error: error.messaje });
+  }
+};
+
+module.exports = {
+  getActivities,
+  postActivity,
+  activityById,
+  putActivity,
+  delActivity,
+};

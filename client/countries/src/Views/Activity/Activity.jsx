@@ -19,7 +19,7 @@ const validate = (input) => {
   if (!input.duration) errors.duration = "Campo Necesario";
   else if (dur <= 0 || dur > 24) errors.duration = "Debe ser entre 1 y 24";
 
-  if (!input.season || input.season === "vacio")
+  if (!input.season || input.season === "Seleccione una temporada")
     errors.season = "Campo Necesario";
   /* 
 	if (!input.countries || input.countries.length === 0)
@@ -148,7 +148,9 @@ export default function Activity() {
 
         <label className={styles.label}>Temporada:</label>
         <select className={styles.select} onChange={handleSeason}>
-          <option value="vacio">Seleccione una temporada</option>
+          <option value="Seleccione una temporada">
+            Seleccione una temporada
+          </option>
           <option value="Verano">Verano</option>
           <option value="Otoño">Otoño</option>
           <option value="Invierno">Invierno</option>
