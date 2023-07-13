@@ -92,10 +92,14 @@ export default function Update() {
   };
 
   const great = () => {
-    Swal.fire("Modificar Actividad", "Actividad creada con éxito", "success");
+    Swal.fire(
+      "Modificar Actividad",
+      "Actividad modificada con éxito",
+      "success"
+    );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !input.name ||
@@ -105,7 +109,7 @@ export default function Update() {
       !input.countries
     )
       return alert();
-
+    await axios.put(`http://localhost:3001/activities/${id}`, input);
     setInput({
       name: "",
       dificulty: "",
@@ -204,7 +208,7 @@ export default function Update() {
         </select>
         {errors.countries && <p className={styles.error}>{errors.countries}</p>}
 
-        <button className={styles.button}>Crear Actividad</button>
+        <button className={styles.button}>Modificar Actividad</button>
       </form>
     </div>
   );
