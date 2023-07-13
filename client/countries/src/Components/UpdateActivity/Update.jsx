@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { getAllCountries } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import styles from "./Update.module.css";
@@ -34,6 +34,7 @@ export default function Update() {
   const { id } = useParams();
   // console.log(id);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const countries = useSelector((state) => state.countries);
   //   console.log(countries);
   const [input, setInput] = useState({
@@ -118,7 +119,10 @@ export default function Update() {
       countries: [],
     });
 
-    return great();
+    great();
+    setTimeout(() => {
+      navigate("/activities");
+    }, 1000);
   };
 
   // console.log(input.countries);

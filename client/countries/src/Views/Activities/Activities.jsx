@@ -54,15 +54,17 @@ function Activities() {
                   )}
                 </li>
               </ul>
-              <NavLink className={styles.button} to={`/${a.id}/update`}>
-                <img className={styles.update} src={icon} alt="update" />
-              </NavLink>
-              <button
-                className={styles.deleteButton}
-                onClick={() => handleDelete(a.id)}
-              >
-                <img className={styles.delete} src={del} alt="delete" />
-              </button>
+              <div className={styles.buttonContainer}>
+                <NavLink className={styles.button} to={`/${a.id}/update`}>
+                  <img className={styles.update} src={icon} alt="update" />
+                </NavLink>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete(a.id)}
+                >
+                  <img className={styles.delete} src={del} alt="delete" />
+                </button>
+              </div>
             </div>
           );
         })

@@ -46,6 +46,12 @@
     font-style: italic;
   }
   
+  .buttonContainer {
+    display: flex; /* Agregamos flexbox */
+    justify-content: flex-start; /* Alinear los botones a la izquierda */
+    gap: 10px; /* Espacio entre los botones */
+  }
+
   .button {
     display: block;
     width: 40px;
