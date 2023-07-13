@@ -3,6 +3,7 @@ import { getAllCountries } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 import styles from "./Update.module.css";
 
 const validate = (input) => {
@@ -86,6 +87,14 @@ export default function Update() {
     });
   };
 
+  const alert = () => {
+    Swal.fire("Modificar Actividad", "Hay campos sin completar", "error");
+  };
+
+  const great = () => {
+    Swal.fire("Modificar Actividad", "Actividad creada con éxito", "success");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -95,7 +104,7 @@ export default function Update() {
       !input.season ||
       !input.countries
     )
-      return alert("Hay campos sin completar");
+      return alert();
 
     setInput({
       name: "",
@@ -104,9 +113,11 @@ export default function Update() {
       season: "",
       countries: [],
     });
+
+    return great();
   };
 
-  console.log(input.countries);
+  // console.log(input.countries);
   const onClose = (c) => {
     setInput({
       ...input,

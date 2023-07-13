@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { getAllCountries, postActivity } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import styles from "./Activity.module.css";
 
 const validate = (input) => {
@@ -69,6 +70,14 @@ export default function Activity() {
     });
   };
 
+  const alert = () => {
+    Swal.fire("Crear Actividad", "Hay campos sin completar", "error");
+  };
+
+  const great = () => {
+    Swal.fire("Crear Actividad", "Actividad creada con éxito", "success");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -78,7 +87,7 @@ export default function Activity() {
       !input.season ||
       !input.countries
     )
-      return alert("Hay campos sin completar");
+      return alert();
     dispatch(postActivity(input));
     setInput({
       name: "",
@@ -87,6 +96,7 @@ export default function Activity() {
       season: "",
       countries: [],
     });
+    return great();
   };
 
   // console.log(input.countries);
