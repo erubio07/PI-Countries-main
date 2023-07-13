@@ -53,7 +53,7 @@ export default function Update() {
       dificulty: data.dificulty,
       duration: data.duration,
       season: data.season,
-      countries: data.countries.id || [],
+      countries: data.countries.map((c) => c.id) || [],
     });
   };
   // getData(id);
@@ -121,7 +121,7 @@ export default function Update() {
 
   return (
     <div className={styles.container}>
-      <h1>Crear Actividad</h1>
+      <h1>Modificar Actividad</h1>
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         <label className={styles.label}>Nombre:</label>
         <input
