@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import globe from "./globe.png";
+import logout from "./logout.png";
 
 function Navbar() {
   return (
     <div className={styles.container}>
       <NavLink className={styles.globeContainer} to="/">
-        <img className={styles.globe} src={globe} alt="globe" />
+        <img className={styles.globe} src={logout} alt="logout" />
       </NavLink>
       <NavLink className={styles.link} to="/home">
         Home
