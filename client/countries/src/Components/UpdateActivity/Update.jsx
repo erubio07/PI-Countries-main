@@ -93,11 +93,24 @@ export default function Update() {
   };
 
   const great = () => {
-    Swal.fire(
-      "Modificar Actividad",
-      "Actividad modificada con éxito",
-      "success"
-    );
+    Swal.fire({
+      title: "¿Seguro quieres modificar la actividad?",
+
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Modificar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.put(`http://localhost:3001/activities/${id}`, input);
+        Swal.fire("Modificada", "Actividad modificada con éxito!", "success");
+        setTimeout(() => {
+          navigate("/activities");
+        }, 1000);
+      }
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -110,7 +123,7 @@ export default function Update() {
       !input.countries
     )
       return alert();
-    await axios.put(`http://localhost:3001/activities/${id}`, input);
+    great();
     setInput({
       name: "",
       dificulty: "",
@@ -118,11 +131,6 @@ export default function Update() {
       season: "",
       countries: [],
     });
-
-    great();
-    setTimeout(() => {
-      navigate("/activities");
-    }, 1000);
   };
 
   // console.log(input.countries);

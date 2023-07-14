@@ -18,17 +18,38 @@ function Activities() {
     dispatch(getAllActivities());
   }, [dispatch]);
 
-  const deleteAlert = () => {
-    Swal.fire("Borrar Actividad", "Actividad borrada con éxito", "info");
+  // const deleteAlert = () => {
+  //   Swal.fire("Borrar Actividad", "Actividad borrada con éxito", "info");
+  // };
+
+  const handleDelete2 = (id) => {
+    Swal.fire({
+      title: "¿Seguro quieres eliminar la actividad?",
+      text: "¡No podrás revertir este cambio!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(`http://localhost:3001/activities/${id}`);
+        Swal.fire("Eliminada", "Actividad eliminada con éxito!", "success");
+        setTimeout(() => {
+          dispatch(getAllActivities());
+        }, 1000);
+      }
+    });
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3001/activities/${id}`);
-    deleteAlert();
-    setTimeout(() => {
-      dispatch(getAllActivities());
-    }, 1000);
-  };
+  // const handleDelete = async (id) => {
+  //   await axios.delete(`http://localhost:3001/activities/${id}`);
+  //   deleteAlert();
+  //   setTimeout(() => {
+  //     dispatch(getAllActivities());
+  //   }, 1000);
+  // };
 
   return (
     <div className={styles.container}>
@@ -60,7 +81,7 @@ function Activities() {
                 </NavLink>
                 <button
                   className={styles.deleteButton}
-                  onClick={() => handleDelete(a.id)}
+                  onClick={() => handleDelete2(a.id)}
                 >
                   <img className={styles.delete} src={del} alt="delete" />
                 </button>
