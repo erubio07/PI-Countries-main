@@ -1,106 +1,124 @@
 .container {
-    position: relative;
-    background-image: url("../../../public/fondoLanding.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
-  
-  .title {
-    color: #fff;
-    font-size: 3rem;
-    text-align: center;
-    margin-top: 30vh;
-    font-weight: bold;
-    -webkit-text-stroke: 2px #020202;
-    
-  }
-  
-  .subtitle {
-    color: #fff;
-    font-size: 1.5rem;
-    text-align: center;
-    -webkit-text-stroke: 1px #020202;
-  }
-  
-  .button {
-    min-width: 130px;
-    height: 40px;
-    color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    overflow: hidden;
-    border-radius: 5px;
-    border: none;
-    background-color: #3d348b
-  }
-  .button:hover {
-    border-radius: 5px;
-    padding-right: 24px;
-    padding-left:8px;
-  }
-  .button:hover:after {
-    opacity: 1;
-    right: 10px;
-  }
-  .button:after {
-    content: "\00BB";
-    position: absolute;
-    opacity: 0;
-    font-size: 20px;
-    line-height: 40px;
-    top: 0;
-    right: -20px;
-    transition: 0.4s;
-  }
+  position: relative;
+  background-image: url("../../../public/fondoLanding.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  .iconContainer {
-    position: relative;
-    margin-top: 20px;
-    margin-left: 20px;
-  }
-  
-  .iconL {
-    width: 30px; /* Ajusta el tamaño según tus necesidades */
-    height: 30px;
-    position: absolute;
-    top: 10px; /* Ajusta la posición vertical según tus necesidades */
-    left: 10px; /* Ajusta la posición horizontal según tus necesidades */
-    cursor: pointer;
-  }
+.title {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 10vh;
+  font-weight: bold;
+  -webkit-text-stroke: 2px #020202;
+}
 
-  .iconG {
-    width: 30px; /* Ajusta el tamaño según tus necesidades */
-    height: 30px;
-    position: absolute;
-    top: 10px; /* Ajusta la posición vertical según tus necesidades */
-    left: 10px; /* Ajusta la posición horizontal según tus necesidades */
-    margin-left: 60px;
-    cursor: pointer;
-  }
+.subtitle {
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+  -webkit-text-stroke: 1px #020202;
+}
 
-  @media (min-width: 768px) {
-    .container {
-      justify-content: space-around;
-      gap: 5px;
-    }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+  font-weight: bold;
+  color:black;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  overflow: hidden;
+  border-radius: 5px;
+  border: none;
+  background-color: #3d348b;
+}
+
+.button:hover {
+  border-radius: 5px;
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+.button:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+.button:after {
+  content: "\00BB";
+  position: absolute;
+  opacity: 0;
+  font-size: 20px;
+  line-height: 40px;
+  top: 0;
+  right: -20px;
+  transition: 0.4s;
+}
+
+.iconContainer {
+  margin-left: 20px;
+}
+
+.iconL {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.iconG {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .container {
+    justify-content: space-around;
+    gap: 5px;
   }
+}

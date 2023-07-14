@@ -1,10 +1,61 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Landing.module.css";
 import linkedIn from "./linkedIn.png";
 import gitHub from "./gitHub.png";
+import Swal from "sweetalert2";
 
 function Landing() {
+  const u = "erubio07";
+  const p = "123456";
+
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  // console.log(user);
+  // console.log(password);
+  const navigate = useNavigate();
+  const success = () => {
+    Swal.fire({
+      title: "Success",
+      text: "Login exitoso, redireccionando",
+      showConfirmButton: false,
+      timer: 2000,
+      icon: "success",
+    });
+    setTimeout(() => {
+      navigate("/home");
+    }, 2000);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!user || !password) {
+      return Swal.fire({
+        title: "Campos incompletos",
+        text: "Hay campos sin completar",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+    if (user === u && password === p) {
+      success();
+    } else {
+      return Swal.fire({
+        title: "Error!",
+        text: "Verifica los campos ingresados",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  };
+
+  const handleUsername = (e) => {
+    setUser(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.iconContainer}>
@@ -19,12 +70,33 @@ function Landing() {
         </NavLink>
       </div>
       <h1 className={styles.title}>Bienvenidos a Countries App.</h1>
-      <h3 className={styles.subtitle}>
+      {/* <h3 className={styles.subtitle}>
         El lugar donde econtraras todo sobre tu país favorito.
-      </h3>
-      <NavLink className={styles.button} to={"/home"}>
-        Comencemos
-      </NavLink>
+      </h3> */}
+      <form
+        className={styles.form}
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
+        <label className={styles.label}>Username</label>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="username"
+          value={user}
+          onChange={(e) => handleUsername(e)}
+        />
+        <label className={styles.label}>Password</label>
+        <input
+          className={styles.input}
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => handlePassword(e)}
+        />
+        <button className={styles.button}>Login</button>
+      </form>
     </div>
   );
 }
