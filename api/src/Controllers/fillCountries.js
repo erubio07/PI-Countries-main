@@ -1,14 +1,15 @@
 const axios = require("axios");
 const { Country } = require("../db");
-
+const countries = require("./countries.json")
+// console.log(countries);
 const getCountries = async () => {
-  const allCountries = await axios.get("https://restcountries.com/v3.1/all");
+  // const allCountries = await axios.get(countries);
   //   console.log(allCountries.data);
-  const allCountriesData = allCountries.data.map((c) => {
+  const allCountriesData = countries.map((c) => {
     return {
       id: c.cca3,
       name: c.name.common,
-      image: c.flags.png,
+      image: c.flags[1],
       continent: c.continents[0],
       capital: c.capital,
       subregion: c.subregion,
