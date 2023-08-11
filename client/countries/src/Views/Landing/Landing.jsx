@@ -4,11 +4,14 @@ import styles from "./Landing.module.css";
 import linkedIn from "./linkedIn.png";
 import gitHub from "./gitHub.png";
 import Swal from "sweetalert2";
+import { useAuth } from "../../AuthProvider/AuthProvider";
 
 function Landing() {
   const u = "erubio07";
   const p = "123456";
 
+  const auth = useAuth();
+  // console.log(auth);
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   // console.log(user);
@@ -22,6 +25,7 @@ function Landing() {
       timer: 2000,
       icon: "success",
     });
+    auth.setIsAuthenticated(true);
     setTimeout(() => {
       navigate("/home");
     }, 2000);
