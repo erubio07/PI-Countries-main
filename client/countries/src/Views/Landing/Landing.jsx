@@ -25,7 +25,7 @@ function Landing() {
       timer: 2000,
       icon: "success",
     });
-    auth.setIsAuthenticated(true);
+
     setTimeout(() => {
       navigate("/home");
     }, 2000);
@@ -42,6 +42,7 @@ function Landing() {
       });
     }
     if (user === u && password === p) {
+      auth.setIsAuthenticated(true);
       success();
     } else {
       return Swal.fire({

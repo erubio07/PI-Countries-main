@@ -1,14 +1,32 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logout from "./logout.png";
+import { useAuth } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 function Navbar() {
+  const auth = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    auth.setIsAuthenticated(false);
+    Swal.fire({
+      title: "Sesión cerrada",
+      text: "Has cerrado tu sesión",
+      icon: "success",
+      timer: 2000,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
+
   return (
     <div className={styles.container}>
-      <NavLink className={styles.globeContainer} to="/">
+      <div className={styles.globeContainer} onClick={handleLogOut}>
         <img className={styles.globe} src={logout} alt="logout" />
-      </NavLink>
+      </div>
       <NavLink className={styles.link} to="/home">
         Home
       </NavLink>
