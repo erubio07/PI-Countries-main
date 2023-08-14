@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require("sequelize");
 const bcrypt = require("bcrypt");
 
 module.exports = (sequelize) => {
-  sequelize.define(
+  const User = sequelize.define(
     "user",
     {
       id: {
@@ -29,16 +29,17 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-    },
-    user.beforeCreate(async (user, options) => {
+    }
+  );
+  User.beforeCreate(async (user, options) => {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
+  });
+  User.beforeUpdate(async (user, options) => {
+    if (user.changed("password")) {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       user.password = hashedPassword;
-    }),
-    user.beforeUpdate(async (user, options) => {
-      if (user.changed("password")) {
-        const hashedPassword = await bcrypt.hash(user.password, 10);
-        user.password = hashedPassword;
-      }
-    })
-  );
+    }
+  });
+  return User;
 };
