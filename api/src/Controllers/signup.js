@@ -1,17 +1,17 @@
 const { User } = require("../db");
 const { Sequelize } = require("sequelize");
 
-const singUp = async (name, username, password) => {
-  if (!name || !username || password) {
+const signup = async (name, username, password) => {
+  if (!name || !username || !password) {
     return "name, username and password are reuired ";
   }
   try {
     const usernameExist = await User.findOne({
       where: {
-        username: "username",
+        username: username,
       },
     });
-    if (usernameExist.length > 0) {
+    if (usernameExist) {
       return "username already exist";
     } else {
       const newUser = await User.create({
@@ -19,11 +19,11 @@ const singUp = async (name, username, password) => {
         username,
         password,
       });
+      return newUser;
     }
-    return newUser;
   } catch (error) {
     return error.message;
   }
 };
 
-module.exports = singUp;
+module.exports = signup;
