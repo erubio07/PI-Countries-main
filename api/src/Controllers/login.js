@@ -1,6 +1,8 @@
 const { User } = require("../db");
 const { Sequelize } = require("sequelize");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const login = async (username, password) => {
     if (!username || !password) {
