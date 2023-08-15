@@ -4,27 +4,50 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+const generateAccessToken = (user) => {
+  return jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: process.env.ACCESS_TOKEN_EXPIRATION,
+  });
+};
+
+const generateRefreshToken = (user) => {
+  return jwt.sign({ id: user.id }, process.env.REFRESH_TOKEN_SECRET);
+};
+
 const login = async (username, password) => {
-    if (!username || !password) {
-        return "Username or Password are required";
+  if (!username || !password) {
+    return "Username or Password are required";
+  }
+  try {
+    const user = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
+    if (user) {
+      const passwordCompare = await bcrypt.compare(
+        password,
+        usernameExist.password
+      );
+      if (passwordCompare) {
+        const accessToken = generateAccessToken(user);
+        const refreshToken = generateRefreshToken(user);
+        return {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          user: {
+            id: user.id,
+            name: user.name,
+            username: user.username,
+          },
+        };
+      }
+    } else {
+      return "Incorrect Password or Username";
     }
-    try {
-        const usernameExist = await User.findOne({
-            where: {
-                username: username,
-            }
-        })
-        if (usernameExist) {
-            const passwordCompare = await bcrypt.compare(password, usernameExist.password);
-            if (passwordCompare) {
-                return usernameExist;
-            }
-        } else {
-            return "Incorrect Password or Username";
-        }
-    } catch (error) {
-        error.message;
-    }
-}
+  } catch (error) {
+    error.message;
+  }
+};
 
 module.exports = login;
