@@ -35,11 +35,11 @@ const login = async (username, password) => {
             username: user.username,
           },
         };
-      }
-    } else {
-      return "Incorrect Password or Username";
-    }
+      } 
+    } 
   } catch (error) {
-    error.message;
+    throw new Error(error.message);
   }
 };
+
+module.exports = login;
