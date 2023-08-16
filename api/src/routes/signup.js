@@ -1,16 +1,8 @@
 const { Router } = require("express");
-const signup = require("../Controllers/signupController");
+const signupHandler = require("../Handlers/signupHandler");
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  const { name, username, password } = req.body;
-  try {
-    const newUser = await signup(name, username, password);
-    res.status(200).json(newUser);
-  } catch (error) {
-    res.status(400).json(error.message);
-  }
-});
+router.post("/", signupHandler);
 
 module.exports = router;

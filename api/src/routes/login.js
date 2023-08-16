@@ -1,16 +1,8 @@
 const { Router } = require("express");
-const login = require("../Controllers/loginController");
+const loginHandler = require("../Handlers/loginHandler");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const loginUser = await login(username, password);
-    res.status(200).json(loginUser);
-  } catch (error) {
-    res.status(400).json(error.message);
-  }
-});
+router.get("/", loginHandler);
 
 module.exports = router;
