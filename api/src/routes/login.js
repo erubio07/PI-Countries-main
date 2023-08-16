@@ -3,6 +3,6 @@ const loginHandler = require("../Handlers/loginHandler");
 
 const router = Router();
 
-router.get("/", loginHandler);
+router.post("/", loginHandler);
 
 module.exports = router;

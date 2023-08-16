@@ -15,9 +15,6 @@ const generateRefreshToken = (user) => {
 };
 
 const login = async (username, password) => {
-  if (!username || !password) {
-    return "Username or Password are required";
-  }
   try {
     const user = await User.findOne({
       where: {
@@ -46,5 +43,3 @@ const login = async (username, password) => {
     error.message;
   }
 };
-
-module.exports = login;
