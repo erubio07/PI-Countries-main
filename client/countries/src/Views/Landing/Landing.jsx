@@ -101,6 +101,9 @@ function Landing() {
           onChange={(e) => handlePassword(e)}
         />
         <button className={styles.button}>Login</button>
+        <p className={styles.text}>
+          No tienes una cuenta? <NavLink to="/signup">Registrate</NavLink>
+        </p>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Activity from "./Views/Activity/Activity";
 import Activities from "./Views/Activities/Activities";
 import Update from "./Components/UpdateActivity/Update";
+import SignUp from "./Views/SignUp/SignUp";
 import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 
@@ -18,6 +19,7 @@ function App() {
         {location.pathname !== "/" && <Navbar />}
         <Routes>
           <Route exact path="/" element={<Landing />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route
             path="/countries/:id"
