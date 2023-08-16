@@ -25,10 +25,7 @@ const login = async (username, password) => {
       },
     });
     if (user) {
-      const passwordCompare = await bcrypt.compare(
-        password,
-        usernameExist.password
-      );
+      const passwordCompare = await bcrypt.compare(password, user.password);
       if (passwordCompare) {
         const accessToken = generateAccessToken(user);
         const refreshToken = generateRefreshToken(user);
