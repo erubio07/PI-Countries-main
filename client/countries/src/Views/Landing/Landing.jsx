@@ -8,9 +8,6 @@ import { useAuth } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
 
 function Landing() {
-  // const u = "erubio07";
-  // const p = "123456";
-
   const auth = useAuth();
   // console.log(auth);
   const [username, setUsername] = useState("");
@@ -34,37 +31,41 @@ function Landing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !password) {
-      return Swal.fire({
-        title: "Campos incompletos",
-        text: "Hay campos sin completar",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    }
-    if (username && password) {
-      const data = await axios.post("http://localhost:3001/login", {
-        username,
-        password,
-      });
-      const userData = data.data;
-      // console.log(userData);
-      console.log(data);
-      if (data.statusText === "OK") {
-        const { accessToken, refreshToken } = userData;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+    try {
+      if (!username || !password) {
+        return Swal.fire({
+          title: "Campos incompletos",
+          text: "Hay campos sin completar",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
       }
-      // console.log(localStorage);
-      auth.setIsAuthenticated(true);
-      success();
-    } else {
-      return Swal.fire({
-        title: "Error!",
-        text: "Verifica los campos ingresados",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+      if (username && password) {
+        const data = await axios.post("http://localhost:3001/login", {
+          username,
+          password,
+        });
+        const userData = data.data;
+        // console.log(userData);
+        // console.log(data);
+        if (data.statusText === "OK") {
+          const { accessToken, refreshToken } = userData;
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+          auth.setIsAuthenticated(true);
+          success();
+        }
+        // console.log(localStorage);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        Swal.fire({
+          title: "Error",
+          text: "Nombre de usuario o contraseña incorrectos",
+          icon: "error",
+          timer: 2000,
+        });
+      }
     }
   };
 
