@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Landing.module.css";
 import linkedIn from "./linkedIn.png";
@@ -15,6 +15,13 @@ function Landing() {
   // console.log(user);
   // console.log(password);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      navigate("/home");
+    }
+  });
+
   const success = () => {
     Swal.fire({
       title: "Success",

@@ -14,6 +14,8 @@ import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import Filter from "../../Components/Filter/Filter";
+import { useAuth } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,16 @@ export const Home = () => {
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
   const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
+  const auth = useAuth();
+  const user = auth.userId;
 
+  // console.log(user);
+
+  const fecthUserInfo = async (user) => {
+    const userInfo = axios.post("http://localhost:3001/login", `${user}`);
+    console.log(userInfo);
+  };
+  fecthUserInfo(user);
   const handleChange = (e) => {
     setInput(e.target.value);
   };
