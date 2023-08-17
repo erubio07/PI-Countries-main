@@ -3,8 +3,8 @@ const { User } = require("../db");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
-  const { id } = req.body;
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
     if (id) {
       const user = await User.findByPk(id);

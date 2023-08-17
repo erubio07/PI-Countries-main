@@ -36,10 +36,14 @@ export const AuthProvider = ({ children }) => {
               } else {
                 const errorData = await data.json();
                 console.log("Token refresh error:", errorData.message);
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
                 setIsAuthenticated(false);
               }
             } catch (error) {
               console.error("Error during token refresh:", error);
+              localStorage.removeItem("accessToken");
+              localStorage.removeItem("refreshToken");
               setIsAuthenticated(false);
             }
           };
@@ -56,6 +60,7 @@ export const AuthProvider = ({ children }) => {
   const logOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    setUserId(null);
     setIsAuthenticated(false);
   };
 

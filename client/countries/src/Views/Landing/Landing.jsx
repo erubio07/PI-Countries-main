@@ -70,7 +70,7 @@ function Landing() {
           title: "Error",
           text: "Nombre de usuario o contraseña incorrectos",
           icon: "error",
-          timer: 2000,
+          timer: 3000,
         });
       }
     }

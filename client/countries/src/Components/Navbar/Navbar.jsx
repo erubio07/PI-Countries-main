@@ -10,7 +10,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    auth.setIsAuthenticated(false);
+    auth.logOut();
     Swal.fire({
       title: "Sesión cerrada",
       text: "Has cerrado tu sesión",
@@ -19,7 +19,7 @@ function Navbar() {
     });
     setTimeout(() => {
       navigate("/");
-    }, 3000);
+    }, 3500);
   };
 
   return (

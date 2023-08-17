@@ -12,6 +12,29 @@
     max-width: 1920px; /* Establecer un ancho máximo para limitar el tamaño en pantallas más grandes */
     margin: 0 auto; /* Centrar el contenedor horizontalmente */
   }
+
+  .welcomeContainer {
+    flex: 1; /* Ocupa el espacio restante en el contenedor principal */
+    margin-left: 20px; /* Margen izquierdo para separar del borde */
+    display: flex;
+    align-items: center;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-top: -10px;
+  }
+  
+  
+  
+  
+  
+  
+  
   
   @media (min-width: 768px) {
     .container {

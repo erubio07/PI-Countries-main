@@ -32,17 +32,11 @@ export const Home = () => {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
-  const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
-  const auth = useAuth();
-  const user = auth.userId;
-
+  const [user, setUser] = useState(null);
   // console.log(user);
+  const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
+  const { userId } = useAuth();
 
-  const fecthUserInfo = async (user) => {
-    const userInfo = axios.post("http://localhost:3001/login", `${user}`);
-    console.log(userInfo);
-  };
-  fecthUserInfo(user);
   const handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -86,6 +80,19 @@ export const Home = () => {
     dispatch(getAllActivities());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log("userId:", userId);
+    if (userId) {
+      console.log("Fetching user info...");
+      axios.get(`http://localhost:3001/user/${userId}`).then((response) => {
+        setUser(response.data);
+        console.log("User info received:", response.data);
+      });
+      // console.log(response);
+    }
+    forceUpdate();
+  }, [userId]);
+
   return (
     <div className={styles.container}>
       <Filter
@@ -99,20 +106,25 @@ export const Home = () => {
         activities={activities}
         handleFIlterByActivities={handleFIlterByActivities}
       />
-      {countriesFilter
-        .map((c) => {
-          return (
-            <Card
-              key={c.id}
-              id={c.id}
-              flag={c.image}
-              name={c.name}
-              continent={c.continent}
-              population={c.population}
-            />
-          );
-        })
-        .slice(firstIndex, lastIndex)}
+      <div className={styles.welcomeContainer}>
+        <h1>Bienvenido a Countries App {user && user.name}</h1>
+      </div>
+      <div className={styles.cardContainer}>
+        {countriesFilter
+          .map((c) => {
+            return (
+              <Card
+                key={c.id}
+                id={c.id}
+                flag={c.image}
+                name={c.name}
+                continent={c.continent}
+                population={c.population}
+              />
+            );
+          })
+          .slice(firstIndex, lastIndex)}
+      </div>
       <Pagination
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
