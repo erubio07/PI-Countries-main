@@ -7,3 +7,5 @@ export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_POPULATION = "SORT_BY_POPULATION";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+export const GET_USER = "GET_USER";
+export const LOG_OUT = "LOG_OUT";

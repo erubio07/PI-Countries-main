@@ -9,12 +9,14 @@ import {
   sortByName,
   sortByPopulation,
   filterByActivities,
+  getUser,
 } from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import Filter from "../../Components/Filter/Filter";
 import { useAuth } from "../../AuthProvider/AuthProvider";
+import Loader from "../../Components/Loader/Loader";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,9 @@ export const Home = () => {
   // console.log(countriesFilter);
   const activities = useSelector((state) => state.activities);
   // console.log(activities);
+  // const user = useSelector((state) => state.user);
+  // console.log(user);
+
   const totalCountries = countries.length;
   // console.log(totalCountries);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -32,8 +37,9 @@ export const Home = () => {
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
   const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
+
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -76,8 +82,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllCountries());
     dispatch(getAllActivities());
-    forceUpdate();
-  }, [dispatch, forceUpdate]);
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>
@@ -93,7 +98,7 @@ export const Home = () => {
         handleFIlterByActivities={handleFIlterByActivities}
       />
       <div className={styles.welcomeContainer}>
-        <h1>Bienvenido a Countries App {user && user}</h1>
+        <h1>Bienvenido a Countries App {user && user.name}</h1>
       </div>
       <div className={styles.cardContainer}>
         {countriesFilter

@@ -8,6 +8,8 @@ import {
   SORT_BY_POPULATION,
   POST_ACTIVITY,
   FILTER_BY_ACTIVITY,
+  GET_USER,
+  LOG_OUT,
 } from "./types";
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
   detail: {},
   countriesFilter: [],
   activities: [],
+  user: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -126,6 +129,18 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countriesFilter: sortedName,
+      };
+
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case LOG_OUT:
+      return {
+        ...state,
+        user: {},
       };
     default:
       return state;

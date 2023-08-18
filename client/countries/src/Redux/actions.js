@@ -8,6 +8,8 @@ import {
   SORT_BY_POPULATION,
   POST_ACTIVITY,
   FILTER_BY_ACTIVITY,
+  GET_USER,
+  LOG_OUT,
 } from "./types";
 import axios from "axios";
 
@@ -107,5 +109,22 @@ export const sortByPopulation = (value) => {
   return {
     type: SORT_BY_POPULATION,
     payload: value,
+  };
+};
+
+export const getUser = (id) => {
+  console.log(id);
+  return async function (dispatch) {
+    let user = await axios.get(`http://localhost:3001/user/${id}`);
+    return dispatch({
+      type: GET_USER,
+      payload: user.data,
+    });
+  };
+};
+
+export const logOut = () => {
+  return {
+    type: LOG_OUT,
   };
 };

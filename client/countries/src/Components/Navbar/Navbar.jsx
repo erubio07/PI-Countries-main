@@ -3,14 +3,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logout from "./logout.png";
 import { useAuth } from "../../AuthProvider/AuthProvider";
+import { logOut } from "../../Redux/actions";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
 function Navbar() {
   const auth = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogOut = () => {
     auth.logOut();
+    dispatch(logOut());
     Swal.fire({
       title: "Sesión cerrada",
       text: "Has cerrado tu sesión",
