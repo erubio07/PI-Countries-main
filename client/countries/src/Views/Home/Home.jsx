@@ -15,7 +15,6 @@ import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import Filter from "../../Components/Filter/Filter";
 import { useAuth } from "../../AuthProvider/AuthProvider";
-import axios from "axios";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -32,10 +31,9 @@ export const Home = () => {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
-  const [user, setUser] = useState(null);
-  // console.log(user);
   const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
-  const { userId } = useAuth();
+  const { user } = useAuth();
+  console.log(user);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -78,20 +76,8 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllCountries());
     dispatch(getAllActivities());
-  }, [dispatch]);
-
-  useEffect(() => {
-    console.log("userId:", userId);
-    if (userId) {
-      console.log("Fetching user info...");
-      axios.get(`http://localhost:3001/user/${userId}`).then((response) => {
-        setUser(response.data);
-        console.log("User info received:", response.data);
-      });
-      // console.log(response);
-    }
     forceUpdate();
-  }, [userId]);
+  }, [dispatch, forceUpdate]);
 
   return (
     <div className={styles.container}>
@@ -107,7 +93,7 @@ export const Home = () => {
         handleFIlterByActivities={handleFIlterByActivities}
       />
       <div className={styles.welcomeContainer}>
-        <h1>Bienvenido a Countries App {user && user.name}</h1>
+        <h1>Bienvenido a Countries App {user && user}</h1>
       </div>
       <div className={styles.cardContainer}>
         {countriesFilter

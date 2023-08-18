@@ -1,4 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
+import React from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 
@@ -9,14 +10,18 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userFetched, setUserFetched] = useState(false);
 
-  // console.log(userId);
+  console.log(user);
+  console.log(userId);
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       const decodedToken = jwt_decode(accessToken);
       setUserId(decodedToken.id);
       // console.log(decodedToken);
+
       const currentTime = Date.now() / 1000;
       // console.log(currentTime);
 
@@ -55,12 +60,27 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
       }
     }
-  }, []);
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchUserInfo = async (id) => {
+      console.log("userId:", userId);
+      if (userId) {
+        const response = await axios.get(`http://localhost:3001/user/${id}`);
+        console.log(response.data.name);
+        setUser(response.data.name);
+        setUserFetched(true);
+      }
+    };
+    if (!userFetched) {
+      fetchUserInfo(userId);
+    }
+  }, [userId, userFetched]);
 
   const logOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    setUserId(null);
+    setUser(null);
     setIsAuthenticated(false);
   };
 
@@ -70,7 +90,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         setIsAuthenticated,
         logOut,
-        userId,
+        user,
       }}
     >
       {children}
