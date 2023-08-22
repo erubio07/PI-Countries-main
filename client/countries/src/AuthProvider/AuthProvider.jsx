@@ -2,8 +2,8 @@ import { useContext, createContext, useState, useEffect } from "react";
 import React from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../Redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getUser } from "../Redux/actions";
 const AuthContext = createContext({
   isAuthenticated: false,
 });
@@ -12,9 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
   console.log(userId);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  console.log(user);
+  // const dispatch = useDispatch();
+  // const user = useSelector((state) => state.user); SE CONSULTA PARA PROBAR OTRO METODO
+  // console.log(user);
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
@@ -69,11 +69,13 @@ export const AuthProvider = ({ children }) => {
     // dispatch(logOut());
   };
 
-  useEffect(() => {
-    if (userId) {
-      dispatch(getUser(userId));
-    }
-  }, [userId, dispatch]);
+  //se comenta para probar otro metodo y evitar el retraso
+
+  // useEffect(() => {
+  //   if (userId) {
+  //     dispatch(getUser(userId));
+  //   }
+  // }, [userId, dispatch]);
 
   return (
     <AuthContext.Provider
@@ -81,7 +83,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         setIsAuthenticated,
         logOut,
-        user,
+        //user,
       }}
     >
       {children}

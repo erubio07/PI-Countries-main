@@ -3,12 +3,16 @@ const { User } = require("../db");
 
 const router = Router();
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/", async (req, res) => {
+  const { username } = req.body;
   try {
-    if (id) {
-      const user = await User.findByPk(id);
-      return res.status(200).json(user);
+    if (username) {
+      const user = await User.findOne({
+        where: {
+          username: username,
+        },
+      });
+      return res.status(200).json({ id: user.id, name: user.name });
     }
   } catch (error) {
     return res.status(400).json({ error: error.message });
