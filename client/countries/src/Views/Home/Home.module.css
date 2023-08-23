@@ -25,7 +25,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 95%; /* Ocupa todo el ancho disponible */
     margin-top: -10px;
   }
   
@@ -40,6 +40,6 @@
     .container {
       justify-content: space-around;
       gap: 5px;
-      max-width: 1350px;
+      /* max-width: 1350px; */
     }
   }
