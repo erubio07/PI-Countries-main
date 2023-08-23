@@ -12,7 +12,9 @@ router.post("/", async (req, res) => {
           username: username,
         },
       });
-      return res.status(200).json({ id: user.id, name: user.name });
+      return res
+        .status(200)
+        .json({ id: user.id, name: user.name, username: user.username });
     }
   } catch (error) {
     return res.status(400).json({ error: error.message });

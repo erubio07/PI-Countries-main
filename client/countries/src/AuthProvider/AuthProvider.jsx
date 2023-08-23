@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
             try {
               const data = await axios.post(
                 "http://localhost:3001/refreshtoken",
-                refreshToken
+                { refreshToken }
               );
               if (data.statusText === "OK") {
                 const { accessToken: newAccessToken } = await data.json();

@@ -26,6 +26,9 @@ export const Home = () => {
   // console.log(activities);
   const user = useSelector((state) => state.user);
   console.log(user);
+  // localStorage.setItem("user", JSON.stringify(user.name));
+  // const name = JSON.parse(localStorage.getItem("user"));
+  // console.log(name);
 
   const totalCountries = countries.length;
   // console.log(totalCountries);
@@ -77,7 +80,17 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllCountries());
     dispatch(getAllActivities());
+    const savedUserName = localStorage.getItem("userName");
+    if (savedUserName) {
+      dispatch(getUser(savedUserName));
+    }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user && user.username) {
+      localStorage.setItem("userName", user.username);
+    }
+  }, [user]);
 
   return (
     <div className={styles.container}>
