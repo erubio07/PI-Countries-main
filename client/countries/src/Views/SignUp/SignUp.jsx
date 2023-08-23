@@ -8,18 +8,48 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({});
+  console.log(error);
   const navigate = useNavigate();
+
+  const validate = (e) => {
+    let error = {};
+    if (!name) {
+      error.name = "Campo requerido";
+    }
+    if (/[^A-Za-z ]+/g.test(name)) {
+      error.name = "El nombre solo puede contener letras";
+    }
+    if (!username) {
+      error.username = "Campo requerido";
+    }
+    if (/[^A-Za-z0-9 ]+/g.test(username)) {
+      error.username = "El username solo puede contener letras y números";
+    }
+    if (!password) {
+      error.password = "Campo requerido";
+    }
+    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/g.test(password)) {
+      error.password =
+        "La contraseña debe tener al entre 8 y 15 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. No puede contener caracteres especiales";
+    }
+
+    return error;
+  };
 
   const handleName = (e) => {
     setName(e.target.value);
+    setError(validate(e.target.value));
   };
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
+    setError(validate(e.target.value));
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    setError(validate(e.target.value));
   };
 
   //   console.log(name, username, password);
@@ -74,8 +104,8 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h2>Crear Usuario</h2>
+    <div className={style.container}>
+      <h2 className={style.title}>Crear Usuario</h2>
       <form className={style.form} onSubmit={(e) => handleSUbmit(e)}>
         <label className={style.label}>Nombre</label>
         <input
@@ -85,6 +115,7 @@ const SignUp = () => {
           value={name}
           onChange={(e) => handleName(e)}
         />
+        {error.name && <p className={style.error}>{error.name}</p>}
         <label className={style.label}>Username</label>
         <input
           className={style.input}
@@ -93,6 +124,7 @@ const SignUp = () => {
           value={username}
           onChange={(e) => handleUsername(e)}
         />
+        {error.username && <p className={style.error}>{error.username}</p>}
         <label className={style.label}>Password</label>
         <input
           className={style.input}
@@ -101,6 +133,7 @@ const SignUp = () => {
           value={password}
           onChange={(e) => handlePassword(e)}
         />
+        {error.password && <p className={style.error}>{error.password}</p>}
         <button className={style.button} type="submit">
           Registrarse
         </button>
