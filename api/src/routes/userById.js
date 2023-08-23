@@ -3,7 +3,7 @@ const { User } = require("../db");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { username } = req.body;
   try {
     if (username) {

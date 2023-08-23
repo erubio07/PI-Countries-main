@@ -26,8 +26,8 @@ export const Home = () => {
   // console.log(countriesFilter);
   const activities = useSelector((state) => state.activities);
   // console.log(activities);
-  // const user = useSelector((state) => state.user);
-  // console.log(user);
+  const user = useSelector((state) => state.user);
+  console.log(user);
 
   const totalCountries = countries.length;
   // console.log(totalCountries);
@@ -38,7 +38,7 @@ export const Home = () => {
   const [input, setInput] = useState("");
   const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
 
-  const { user } = useAuth();
+  // const { user } = useAuth();
   // console.log(user);
 
   const handleChange = (e) => {

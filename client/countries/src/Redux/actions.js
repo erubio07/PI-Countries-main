@@ -112,10 +112,11 @@ export const sortByPopulation = (value) => {
   };
 };
 
-export const getUser = (id) => {
-  console.log(id);
+export const getUser = (username) => {
+  console.log(username);
   return async function (dispatch) {
-    let user = await axios.get(`http://localhost:3001/user/${id}`);
+    let user = await axios.post("http://localhost:3001/user", { username });
+    console.log(user);
     return dispatch({
       type: GET_USER,
       payload: user.data,

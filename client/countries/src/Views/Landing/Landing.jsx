@@ -6,6 +6,8 @@ import gitHub from "./gitHub.png";
 import Swal from "sweetalert2";
 import { useAuth } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
+import { getUser } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Landing() {
   const auth = useAuth();
@@ -15,6 +17,7 @@ function Landing() {
   // console.log(user);
   // console.log(password);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -52,6 +55,7 @@ function Landing() {
           username,
           password,
         });
+        await dispatch(getUser(username));
         const userData = data.data;
         // console.log(userData);
         // console.log(data);
