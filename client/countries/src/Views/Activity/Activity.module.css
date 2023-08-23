@@ -27,11 +27,13 @@
     border-radius: 5px;
   }
 
-  .error{
-    background-color: black;
-    font-size: 15px;
-    color: red;
-    border-radius: 3px;
+  .error {
+    font-size: 12px;
+    color: white;
+    background-color: red;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
   }
   
   .button {
