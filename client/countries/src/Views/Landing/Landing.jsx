@@ -14,10 +14,31 @@ function Landing() {
   // console.log(auth);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({});
   // console.log(user);
   // console.log(password);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const validate = (e) => {
+    let error = {};
+
+    if (!username) {
+      error.username = "Campo requerido";
+    }
+    if (/[^A-Za-z0-9 ]+/g.test(username)) {
+      error.username = "El username solo puede contener letras y números";
+    }
+    if (!password) {
+      error.password = "Campo requerido";
+    }
+    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/g.test(password)) {
+      error.password =
+        "La contraseña debe tener al entre 8 y 15 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. No puede contener caracteres especiales";
+    }
+
+    return error;
+  };
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -82,10 +103,12 @@ function Landing() {
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
+    setError(validate(e.target.value));
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    setError(validate(e.target.value));
   };
   return (
     <div className={styles.container}>
@@ -118,6 +141,7 @@ function Landing() {
           value={username}
           onChange={(e) => handleUsername(e)}
         />
+        {error.username && <p className={styles.error}>{error.username}</p>}
         <label className={styles.label}>Password</label>
         <input
           className={styles.input}
@@ -126,6 +150,7 @@ function Landing() {
           value={password}
           onChange={(e) => handlePassword(e)}
         />
+        {error.password && <p className={styles.error}>{error.password}</p>}
         <button className={styles.button}>Login</button>
         <p className={styles.text}>
           No tienes una cuenta? <NavLink to="/signup">Registrate</NavLink>

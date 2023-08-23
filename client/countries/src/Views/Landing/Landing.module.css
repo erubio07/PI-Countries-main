@@ -29,6 +29,15 @@
   -webkit-text-stroke: 1px #020202;
 }
 
+.error {
+  font-size: 12px;
+  color: white;
+  background-color: red;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
