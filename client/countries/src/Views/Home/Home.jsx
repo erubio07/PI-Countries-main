@@ -15,8 +15,6 @@ import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import Filter from "../../Components/Filter/Filter";
-import { useAuth } from "../../AuthProvider/AuthProvider";
-import Loader from "../../Components/Loader/Loader";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -37,9 +35,6 @@ export const Home = () => {
   const firstIndex = lastIndex - itemsPerPage;
   const [input, setInput] = useState("");
   const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
-
-  // const { user } = useAuth();
-  // console.log(user);
 
   const handleChange = (e) => {
     setInput(e.target.value);
