@@ -3,7 +3,7 @@ const { Favorites, Country } = require("../db");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.post("/get", async (req, res) => {
   const { id } = req.body;
   try {
     if (!id) {
