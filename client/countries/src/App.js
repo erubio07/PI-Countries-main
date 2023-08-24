@@ -10,13 +10,17 @@ import Update from "./Components/UpdateActivity/Update";
 import SignUp from "./Views/SignUp/SignUp";
 import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const location = useLocation();
   return (
     <div className="App">
       <AuthProvider>
-        {location.pathname !== "/" && <Navbar />}
+        {location.pathname !== "/" && location.pathname !== "/signup" && (
+          <Navbar />
+        )}
+
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/signup" element={<SignUp />} />
@@ -38,6 +42,9 @@ function App() {
             element={<ProtectedRoute element={<Update />} />}
           />
         </Routes>
+        {location.pathname !== "/" && location.pathname !== "/signup" && (
+          <Footer />
+        )}
       </AuthProvider>
     </div>
   );

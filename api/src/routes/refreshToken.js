@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     const accessToken = jwt.sign(
       { id: user.id },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRATION }
     );
     return res.status(200).json(accessToken);
   } catch (error) {

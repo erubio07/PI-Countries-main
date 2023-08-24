@@ -34,11 +34,11 @@ export const AuthProvider = ({ children }) => {
                 { refreshToken }
               );
               if (data.statusText === "OK") {
-                const { accessToken: newAccessToken } = await data.json();
+                const { accessToken: newAccessToken } = await data;
                 localStorage.setItem("accessToken", newAccessToken);
                 setIsAuthenticated(true);
               } else {
-                const errorData = await data.json();
+                const errorData = await data;
                 console.log("Token refresh error:", errorData.message);
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
