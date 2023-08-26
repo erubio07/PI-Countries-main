@@ -2,7 +2,15 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Card.module.css";
 
-function Card({ flag, name, continent, id, capital, area, population }) {
+function Card({
+  flag,
+  name,
+  continent,
+  id,
+  population,
+  handleFavorite,
+  userId,
+}) {
   // console.log(id);
   return (
     <div className={styles.card}>
@@ -11,9 +19,18 @@ function Card({ flag, name, continent, id, capital, area, population }) {
       {/* <h2>{capital}</h2> */}
       <h3 className={styles.continent}>{continent}</h3>
       <h3 className={styles.population}>{population}</h3>
-      <NavLink className={styles.button} to={`/countries/${id}`}>
-        Detalles
-      </NavLink>
+      <div className={styles.action}>
+        <NavLink className={styles.button} to={`/countries/${id}`}>
+          Detalles
+        </NavLink>
+        <button
+          className={styles.favorite}
+          onClick={() => handleFavorite({ userId: userId, countryId: id })}
+        >
+          ❤️
+        </button>
+        <button className={styles.favorite}>🖤</button>
+      </div>
     </div>
   );
 }

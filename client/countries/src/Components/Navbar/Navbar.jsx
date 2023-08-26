@@ -34,6 +34,9 @@ function Navbar() {
       <NavLink className={styles.link} to="/home">
         Home
       </NavLink>
+      <NavLink className={styles.link} to="/favorites">
+        Favoritos
+      </NavLink>
       <NavLink className={styles.link} to="/activities">
         Actividades
       </NavLink>

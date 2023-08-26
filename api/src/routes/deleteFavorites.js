@@ -3,8 +3,8 @@ const { Favorites } = require("../db");
 
 const router = Router();
 
-router.delete("/", async (req, res) => {
-  const { id } = req.body;
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
     if (!id) {
       res.status(400).json({ error: "missing id" });

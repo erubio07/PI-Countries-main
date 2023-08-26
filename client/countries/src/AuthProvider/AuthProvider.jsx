@@ -10,11 +10,10 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  console.log(isAuthenticated);
   const [userId, setUserId] = useState(null);
-  console.log(userId);
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user); SE CONSULTA PARA PROBAR OTRO METODO
-  // console.log(user);
+  // console.log(userId);
+
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
@@ -34,11 +33,12 @@ export const AuthProvider = ({ children }) => {
                 { refreshToken }
               );
               if (data.statusText === "OK") {
-                const { accessToken: newAccessToken } = await data;
+                const { accessToken: newAccessToken } = data;
+                console.log(data);
                 localStorage.setItem("accessToken", newAccessToken);
                 setIsAuthenticated(true);
               } else {
-                const errorData = await data;
+                const errorData = data;
                 console.log("Token refresh error:", errorData.message);
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
@@ -64,18 +64,15 @@ export const AuthProvider = ({ children }) => {
   const logOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("name");
+
     setIsAuthenticated(false);
     setUserId(null);
     // dispatch(logOut());
   };
-
-  //se comenta para probar otro metodo y evitar el retraso
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     dispatch(getUser(userId));
-  //   }
-  // }, [userId, dispatch]);
 
   return (
     <AuthContext.Provider
@@ -83,7 +80,6 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         setIsAuthenticated,
         logOut,
-        //user,
       }}
     >
       {children}

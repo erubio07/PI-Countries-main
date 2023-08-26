@@ -10,6 +10,8 @@ import {
   FILTER_BY_ACTIVITY,
   GET_USER,
   LOG_OUT,
+  GET_FAVORITES,
+  ADD_FAVORITE,
 } from "./types";
 import axios from "axios";
 
@@ -113,10 +115,10 @@ export const sortByPopulation = (value) => {
 };
 
 export const getUser = (username) => {
-  console.log(username);
+  // console.log(username);
   return async function (dispatch) {
     let user = await axios.post("http://localhost:3001/user", { username });
-    console.log(user);
+    // console.log(user);
     return dispatch({
       type: GET_USER,
       payload: user.data,
@@ -127,5 +129,28 @@ export const getUser = (username) => {
 export const logOut = () => {
   return {
     type: LOG_OUT,
+  };
+};
+
+export const addFavorites = (info) => {
+  // console.log(info);
+  return async function (dispatch) {
+    let favorite = await axios.post("http://localhost:3001/favorites", info);
+    // console.log(favorite);
+    return favorite;
+  };
+};
+
+export const getFavorites = (id) => {
+  console.log(id);
+  return async function (dispatch) {
+    let favorites = await axios.post("http://localhost:3001/favorites/get", {
+      id,
+    });
+    console.log(favorites);
+    return dispatch({
+      type: GET_FAVORITES,
+      payload: favorites.data,
+    });
   };
 };

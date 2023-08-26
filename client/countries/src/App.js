@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import { Home } from "./Views/Home/Home";
 import Landing from "./Views/Landing/Landing";
 import Detail from "./Views/Detail/Detail";
@@ -11,6 +11,7 @@ import SignUp from "./Views/SignUp/SignUp";
 import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Footer from "./Components/Footer/Footer";
+import Favorites from "./Views/Favorites/Favorites";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route
             path="/countries/:id"

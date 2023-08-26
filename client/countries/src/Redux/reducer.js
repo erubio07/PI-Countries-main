@@ -18,6 +18,7 @@ const initialState = {
   countriesFilter: [],
   activities: [],
   user: {},
+  favorites: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -141,6 +142,17 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         user: {},
+      };
+
+    case "ADD_FAVORITE":
+      return {
+        ...state,
+      };
+
+    case "GET_FAVORITES":
+      return {
+        ...state,
+        favorites: action.payload,
       };
     default:
       return state;

@@ -10,11 +10,13 @@ import {
   sortByPopulation,
   filterByActivities,
   getUser,
+  addFavorites,
 } from "../../Redux/actions";
 import Card from "../../Components/Card/Card";
 import styles from "./Home.module.css";
 import Pagination from "../../Components/Pagination/Pagination";
 import Filter from "../../Components/Filter/Filter";
+import Swal from "sweetalert2";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -25,10 +27,9 @@ export const Home = () => {
   const activities = useSelector((state) => state.activities);
   // console.log(activities);
   const user = useSelector((state) => state.user);
-  console.log(user);
-  // localStorage.setItem("user", JSON.stringify(user.name));
-  // const name = JSON.parse(localStorage.getItem("user"));
-  // console.log(name);
+  // console.log(user);
+  const userId = user.id;
+  // console.log(userId);
 
   const totalCountries = countries.length;
   // console.log(totalCountries);
@@ -77,6 +78,16 @@ export const Home = () => {
     forceUpdate();
   };
 
+  const handleFavorite = (info) => {
+    dispatch(addFavorites(info));
+    Swal.fire({
+      title: "País agregado a favoritos",
+      showConfirmButton: false,
+      timer: 2000,
+      icon: "success",
+    });
+  };
+
   useEffect(() => {
     dispatch(getAllCountries());
     dispatch(getAllActivities());
@@ -89,6 +100,8 @@ export const Home = () => {
   useEffect(() => {
     if (user && user.username) {
       localStorage.setItem("userName", user.username);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("name", user.name);
     }
   }, [user]);
 
@@ -119,6 +132,8 @@ export const Home = () => {
                 name={c.name}
                 continent={c.continent}
                 population={c.population}
+                handleFavorite={handleFavorite}
+                userId={userId}
               />
             );
           })

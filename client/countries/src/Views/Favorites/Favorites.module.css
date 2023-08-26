@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    background-color:black;
+    background-image: url("../../../public/fondo.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    gap:10px;
+    min-height: 100vh;
+    max-width: 1920px; /* Establecer un ancho máximo para limitar el tamaño en pantallas más grandes */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+  }
+
+  .welcomeContainer {
+    flex: 1; /* Ocupa el espacio restante en el contenedor principal */
+    margin-left: 20px; /* Margen izquierdo para separar del borde */
+    display: flex;
+    align-items: center;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+    width: 95%; /* Ocupa todo el ancho disponible */
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  @media (min-width: 768px) {
+    .container {
+      justify-content: space-around;
+      gap: 5px;
+      /* max-width: 1350px; */
+    }
+  }
