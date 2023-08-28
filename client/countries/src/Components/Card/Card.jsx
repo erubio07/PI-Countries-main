@@ -10,8 +10,10 @@ function Card({
   population,
   handleFavorite,
   userId,
+  favoriteId,
+  handleDelete,
 }) {
-  // console.log(id);
+  console.log(favoriteId);
   return (
     <div className={styles.card}>
       <img className={styles.image} src={flag} alt="flag" />
@@ -29,7 +31,12 @@ function Card({
         >
           ❤️
         </button>
-        <button className={styles.favorite}>🖤</button>
+        <button
+          className={styles.favorite}
+          onClick={() => handleDelete(favoriteId)}
+        >
+          🖤
+        </button>
       </div>
     </div>
   );

@@ -13,10 +13,31 @@ function Favorites() {
   // console.log(localStorage.getItem("name"));
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
-  console.log(favorites);
+  // console.log(favorites);
 
   const userId = localStorage.getItem("userId");
   const name = localStorage.getItem("name");
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "¿Seguro quieres eliminar el país de tus favoritos?",
+      text: "¡No podrás revertir este cambio!",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(`http://localhost:3001/favorites/${id}`);
+        Swal.fire("Eliminado", "País eliminado con éxito!", "success");
+        setTimeout(() => {
+          dispatch(getFavorites(userId));
+        }, 1000);
+      }
+    });
+  };
 
   useEffect(() => {
     dispatch(getFavorites(userId));
@@ -39,6 +60,8 @@ function Favorites() {
                     name={c.country.name}
                     continent={c.country.continent}
                     population={c.country.population}
+                    favoriteId={c.id}
+                    handleDelete={handleDelete}
                   />
                 ))}
               </div>
