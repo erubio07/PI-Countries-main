@@ -6,7 +6,7 @@ const getUserByUsername = async (username) => {
       username: username,
     },
   });
-  return user;
+  return { id: user.id, name: user.name, username: user.username };
 };
 
 module.exports = getUserByUsername;
