@@ -1,13 +1,11 @@
-const { Country, Activity } = require("../db");
+const { Country, Activity, User } = require("../db");
 const { Sequelize, Op } = require("sequelize");
 
 const getAllActivities = async () => {
   const activities = await Activity.findAll({
-    include: [
-      {
-        model: Country,
-      },
-    ],
+    include: {
+      model: Country,
+    },
   });
   return activities;
 };
@@ -23,8 +21,28 @@ const getActivityById = async (id) => {
   return activity;
 };
 
-const postActivities = async (name, dificulty, duration, season, countries) => {
-  if ((name, dificulty, duration, season, countries)) {
+const getActivityByUser = async (id) => {
+  const user = await User.findByPk(id, {
+    include: [
+      {
+        model: Activity,
+        include: [Country],
+      },
+    ],
+  });
+  console.log(user);
+  return user;
+};
+
+const postActivities = async (
+  name,
+  dificulty,
+  duration,
+  season,
+  countries,
+  userId
+) => {
+  if ((name, dificulty, duration, season, countries, userId)) {
     const activity = await Activity.create({
       name,
       dificulty,
@@ -33,6 +51,7 @@ const postActivities = async (name, dificulty, duration, season, countries) => {
       countries,
     });
     await activity.addCountry(countries);
+    await activity.setUser(userId);
     return activity;
   } else {
     return "Hay campos incompletos";
@@ -75,4 +94,5 @@ module.exports = {
   getActivityById,
   // updateaActivity,
   deleteActivity,
+  getActivityByUser,
 };

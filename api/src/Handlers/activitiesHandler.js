@@ -4,6 +4,7 @@ const {
   getActivityById,
   //   updateaActivity
   deleteActivity,
+  getActivityByUser,
 } = require("../Controllers/activitiesController");
 const { Country, Activity } = require("../db");
 
@@ -27,14 +28,15 @@ const activityById = async (req, res) => {
 };
 
 const postActivity = async (req, res) => {
-  const { name, dificulty, duration, season, countries } = req.body;
+  const { name, dificulty, duration, season, countries, userId } = req.body;
   try {
     const activity = postActivities(
       name,
       dificulty,
       duration,
       season,
-      countries
+      countries,
+      userId
     );
     res.status(200).send("Actividad creada con éxito");
   } catch (error) {
@@ -73,10 +75,22 @@ const delActivity = async (req, res) => {
   }
 };
 
+const getActivityByUserHandler = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    let user = await getActivityByUser(id);
+    res.status(200).json(user.activities);
+  } catch (error) {
+    res.status(400).json({ error: error.messaje });
+  }
+};
+
 module.exports = {
   getActivities,
   postActivity,
   activityById,
   putActivity,
   delActivity,
+  getActivityByUserHandler,
 };

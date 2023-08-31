@@ -6,6 +6,7 @@ const {
   activityById,
   putActivity,
   delActivity,
+  getActivityByUserHandler,
 } = require("../Handlers/activitiesHandler");
 
 const router = Router();
@@ -19,5 +20,7 @@ router.put("/:id", putActivity);
 router.post("/", postActivity);
 
 router.delete("/:id", delActivity);
+
+router.get("/user/:id", getActivityByUserHandler);
 
 module.exports = router;

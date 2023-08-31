@@ -67,7 +67,7 @@ function Favorites() {
               </div>
             </div>
           ) : (
-            <p>No posees favoritos todavía.</p>
+            <h2>No posees favoritos todavía.</h2>
           )}
         </div>
       ) : (
