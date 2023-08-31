@@ -59,6 +59,7 @@ export const getAllActivities = () => {
 };
 
 export const postActivity = (info) => {
+  console.log(info);
   return async function (dispatch) {
     let activity = await axios.post("http://localhost:3001/activities", info);
     return activity;

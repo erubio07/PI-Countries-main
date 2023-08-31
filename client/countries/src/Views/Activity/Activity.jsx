@@ -28,6 +28,9 @@ const validate = (input) => {
   return errors;
 };
 
+const id = localStorage.getItem("userId");
+// console.log(userId);
+
 export default function Activity() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
@@ -38,9 +41,10 @@ export default function Activity() {
     duration: "",
     season: "",
     countries: [],
+    userId: id,
   });
 
-  // console.log(input);
+  console.log(input);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
