@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { getAllActivities } from "../../Redux/actions";
+import { getActivitiesUser } from "../../Redux/actions";
 import styles from "./Activities.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -10,13 +10,15 @@ import icon from "./update.png";
 import del from "./delete.png";
 
 function Activities() {
+  const userId = localStorage.getItem("userId");
+  // console.log(id);
   const activities = useSelector((state) => state.activities);
   //   console.log(activities);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllActivities());
-  }, [dispatch]);
+    dispatch(getActivitiesUser(userId));
+  }, [dispatch, userId]);
 
   // const deleteAlert = () => {
   //   Swal.fire("Borrar Actividad", "Actividad borrada con éxito", "info");
@@ -37,7 +39,7 @@ function Activities() {
         await axios.delete(`http://localhost:3001/activities/${id}`);
         Swal.fire("Eliminada", "Actividad eliminada con éxito!", "success");
         setTimeout(() => {
-          dispatch(getAllActivities());
+          dispatch(getActivitiesUser(userId));
         }, 1000);
       }
     });

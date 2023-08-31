@@ -10,6 +10,7 @@ import {
   FILTER_BY_ACTIVITY,
   GET_USER,
   LOG_OUT,
+  GET_ACTIVITIES_USER,
 } from "./types";
 
 const initialState = {
@@ -45,6 +46,13 @@ function rootReducer(state = initialState, action) {
 
     case GET_ALL_ACTIVITIES:
       // console.log(action.payload);
+      return {
+        ...state,
+        activities: action.payload,
+      };
+
+    case GET_ACTIVITIES_USER:
+      console.log(action.payload);
       return {
         ...state,
         activities: action.payload,

@@ -12,6 +12,7 @@ import {
   LOG_OUT,
   GET_FAVORITES,
   ADD_FAVORITE,
+  GET_ACTIVITIES_USER,
 } from "./types";
 import axios from "axios";
 
@@ -53,6 +54,20 @@ export const getAllActivities = () => {
     // console.log(activities);
     return dispatch({
       type: GET_ALL_ACTIVITIES,
+      payload: activities.data,
+    });
+  };
+};
+
+export const getActivitiesUser = (id) => {
+  console.log(id);
+  return async function (dispatch) {
+    let activities = await axios.get(
+      `http://localhost:3001/activities/user/${id}`
+    );
+    console.log(activities);
+    return dispatch({
+      type: GET_ACTIVITIES_USER,
       payload: activities.data,
     });
   };

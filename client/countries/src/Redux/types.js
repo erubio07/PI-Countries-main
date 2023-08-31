@@ -11,3 +11,4 @@ export const GET_USER = "GET_USER";
 export const LOG_OUT = "LOG_OUT";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
+export const GET_ACTIVITIES_USER = "GET_ACTIVITIES_USER";

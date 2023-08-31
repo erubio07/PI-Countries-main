@@ -29,7 +29,7 @@ const validate = (input) => {
 };
 
 const id = localStorage.getItem("userId");
-// console.log(userId);
+console.log(id);
 
 export default function Activity() {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export default function Activity() {
     userId: id,
   });
 
-  console.log(input);
+  // console.log(input);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {

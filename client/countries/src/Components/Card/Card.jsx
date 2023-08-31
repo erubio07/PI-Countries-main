@@ -13,7 +13,7 @@ function Card({
   favoriteId,
   handleDelete,
 }) {
-  console.log(favoriteId);
+  // console.log(favoriteId);
   return (
     <div className={styles.card}>
       <img className={styles.image} src={flag} alt="flag" />
