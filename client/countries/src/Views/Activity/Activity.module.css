@@ -1,3 +1,6 @@
+html, body {
+  overflow-x: hidden;
+}
 .container {
     background-image: url('./fondo.jpg');
     background-size: cover;
@@ -64,4 +67,30 @@
 
   .close:hover {
     background-color: #45a049;
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-position: top;
+      padding: 1rem; 
+    }
+    
+    .form {
+      width: 100%; 
+    }
+    
+    .input,
+    .select {
+      width: 100%; 
+    }
+  }
+  
+  /* Estilos para pantallas de 1920x1080 */
+  @media (min-width: 1920px) {
+    .container {
+      background-size: cover;
+      background-position: center;
+    }
   }

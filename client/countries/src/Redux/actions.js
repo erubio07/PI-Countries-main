@@ -60,12 +60,12 @@ export const getAllActivities = () => {
 };
 
 export const getActivitiesUser = (id) => {
-  console.log(id);
+  // console.log(id);
   return async function (dispatch) {
     let activities = await axios.get(
       `http://localhost:3001/activities/user/${id}`
     );
-    console.log(activities);
+    // console.log(activities);
     return dispatch({
       type: GET_ACTIVITIES_USER,
       payload: activities.data,

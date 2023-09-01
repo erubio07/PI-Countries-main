@@ -1,3 +1,6 @@
+html, body {
+  overflow-x: hidden;
+}
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -29,17 +32,26 @@
     margin-top: -10px;
   }
   
+  @media (max-width: 1920px) {
+    /* Estilos para pantallas Full HD (1920x1080) y más pequeñas */
+    .container {
+      justify-content: space-around;
+      gap: 5px;
+    }
+  }
   
-  
-  
-  
-  
-  
+  @media (max-width: 1200px) {
+    /* Estilos para pantallas más pequeñas, como resoluciones de 1600x900 */
+    .container {
+      max-width: 1600px;
+    }
+  }
   
   @media (min-width: 768px) {
     .container {
       justify-content: space-around;
       gap: 5px;
+      flex-direction: row;
       /* max-width: 1350px; */
     }
   }

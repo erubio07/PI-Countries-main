@@ -47,9 +47,9 @@
   }
   
   .buttonContainer {
-    display: flex; /* Agregamos flexbox */
-    justify-content: flex-start; /* Alinear los botones a la izquierda */
-    gap: 10px; /* Espacio entre los botones */
+    display: flex; 
+    justify-content: flex-start; 
+    gap: 10px; 
   }
 
   .button {
@@ -99,3 +99,17 @@
     width: 40px;
     height: 40px;
   }
+
+  /* Media queries para dispositivos móviles */
+@media screen and (max-width: 767px) {
+  .card {
+      width: 100%; 
+  }
+}
+
+/* Media queries para pantallas de 1920x1080 o más grandes */
+@media screen and (min-width: 1921px) {
+  .container {
+      justify-content: space-between; 
+  }
+}

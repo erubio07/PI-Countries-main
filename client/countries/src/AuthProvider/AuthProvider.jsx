@@ -10,7 +10,7 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
   const [userId, setUserId] = useState(null);
   // console.log(userId);
 

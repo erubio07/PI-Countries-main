@@ -52,7 +52,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ACTIVITIES_USER:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         activities: action.payload,

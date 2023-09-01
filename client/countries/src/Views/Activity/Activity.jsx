@@ -29,7 +29,7 @@ const validate = (input) => {
 };
 
 const id = localStorage.getItem("userId");
-console.log(id);
+// console.log(id);
 
 export default function Activity() {
   const dispatch = useDispatch();
