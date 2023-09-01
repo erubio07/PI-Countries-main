@@ -43,6 +43,9 @@ function Navbar() {
       <NavLink className={styles.link} to="/activity">
         Crear Actividad
       </NavLink>
+      <NavLink className={styles.link} to="/about">
+        Acerca de
+      </NavLink>
     </div>
   );
 }

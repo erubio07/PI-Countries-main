@@ -71,9 +71,7 @@ function Favorites() {
           )}
         </div>
       ) : (
-        <p>
-          No posees derechos para ver esta sección. Por favor, inicia sesión.
-        </p>
+        (window.location.href = "/")
       )}
     </div>
   );

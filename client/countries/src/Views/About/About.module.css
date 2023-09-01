@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+.container {
+    font-family: 'Josefin Sans', sans-serif; 
+    background-color:bisque;
+    color: #080808; 
+    padding: 20px;
+    font-size: large;
+  }
+  
+  .technologiesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .technologyItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .technologyItem h3 {
+    margin: 0; /* Elimina el margen del título h3 */
+  }

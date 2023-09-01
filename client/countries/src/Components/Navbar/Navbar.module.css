@@ -1,74 +1,39 @@
 .container {
-    position: relative;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    /* justify-content: space-around; */
-    align-items: flex-start;
-    /* max-width: 1346px; */
-    margin: 0 auto;
-    background-color: #020202;
-    padding: 10px;
-    border-radius: 1px;
-    opacity: 90%;
-    
-  }
-  
-  .link {
-    margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 260px;
-  position: relative;
-  z-index: 100;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-    background-color: #007bff; 
-    padding: 10px 20px; 
-    border-radius: 4px; 
-    color: #fff; 
-  }
-  
-  .link:hover {
-    background-color: #0056b3; 
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px; /* Ajusta el espaciado según tus necesidades */
+}
 
-  .globeContainer {
-    position: relative;
-    margin-left: -200px;
-    margin-top: -10px;
-  }
+.link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 50px; /* Ajusta el espaciado entre los enlaces */
+  transition: color 0.3s ease;
 
-  .globe {
-    margin-left: 190px;
-    width: 40px; 
-    height: 40px;
-    position: absolute;
-    top: 12px; 
-    left: 20px; 
-    cursor: pointer;
+  &:hover {
+    color: #00bcd4;
   }
+}
 
-  .globe:hover{
-    transform: scale(1.05);
-    cursor: pointer;
-  }
+.globeContainer {
+  cursor: pointer;
+}
 
-  /* Estilos para dispositivos móviles  */
+.globe {
+  width: 20px;
+  height: 20px;
+}
+
+/* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
 @media (max-width: 768px) {
   .container {
-      flex-direction: column;
-      align-items: center;
-      padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .link {
-      margin: 5px 0;
-      padding: 10px;
-      text-align: center;
+    margin: 10px 0; /* Espaciado entre los enlaces en dispositivos móviles */
   }
-
-  
 }

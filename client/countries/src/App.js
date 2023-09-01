@@ -12,6 +12,7 @@ import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ProtectedRoute } from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Footer from "./Components/Footer/Footer";
 import Favorites from "./Views/Favorites/Favorites";
+import About from "./Views/About/About";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/" element={<Landing />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/about" element={<About />} />
           <Route path="/home" element={<ProtectedRoute element={<Home />} />} />
           <Route
             path="/countries/:id"
