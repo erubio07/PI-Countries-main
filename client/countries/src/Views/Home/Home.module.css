@@ -17,10 +17,13 @@ html, body {
   }
 
   .welcomeContainer {
-    flex: 1; /* Ocupa el espacio restante en el contenedor principal */
+    width: auto;
     margin-left: 20px; /* Margen izquierdo para separar del borde */
+    margin-right: 20px;
     display: flex;
     align-items: center;
+    background-color: blanchedalmond;
+    border-radius: 8px;
   }
 
   .cardContainer {

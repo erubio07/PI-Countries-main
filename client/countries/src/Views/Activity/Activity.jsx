@@ -28,10 +28,9 @@ const validate = (input) => {
   return errors;
 };
 
-const id = localStorage.getItem("userId");
-// console.log(id);
-
 export default function Activity() {
+  const id = localStorage.getItem("userId");
+  // console.log(id);
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   //   console.log(countries);

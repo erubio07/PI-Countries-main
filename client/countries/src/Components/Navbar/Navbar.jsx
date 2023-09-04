@@ -6,11 +6,20 @@ import { useAuth } from "../../AuthProvider/AuthProvider";
 import { logOut } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import MenuMobile from "../MenuMobile/MenuMobile";
+import { PiListBold } from "react-icons/pi";
+import { RxCross2 } from "react-icons/rx";
+import { useState } from "react";
 
 function Navbar() {
   const auth = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleMenuMobile = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const handleLogOut = () => {
     auth.logOut();
@@ -31,6 +40,27 @@ function Navbar() {
       <div className={styles.globeContainer} onClick={handleLogOut}>
         <img className={styles.globe} src={logout} alt="logout" />
       </div>
+      <div className={styles.mobileMenuButtonContainer}>
+        {isMobileMenuOpen ? (
+          <RxCross2
+            className={styles.mobileMenuButton}
+            style={{ fontSize: "2rem" }}
+            color="white"
+            onClick={handleMenuMobile}
+          />
+        ) : (
+          <PiListBold
+            className={styles.mobileMenuButton}
+            style={{ fontSize: "2rem" }}
+            color="white"
+            onClick={handleMenuMobile}
+          />
+        )}
+      </div>
+      <MenuMobile
+        isOpen={isMobileMenuOpen}
+        handleMenuMobile={handleMenuMobile}
+      />
       <NavLink className={styles.link} to="/home">
         Home
       </NavLink>

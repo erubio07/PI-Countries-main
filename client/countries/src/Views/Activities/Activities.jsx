@@ -11,9 +11,9 @@ import del from "./delete.png";
 
 function Activities() {
   const userId = localStorage.getItem("userId");
-  // console.log(id);
+  // console.log(userId);
   const activities = useSelector((state) => state.activities);
-  //   console.log(activities);
+  // console.log(activities);
   const dispatch = useDispatch();
 
   useEffect(() => {

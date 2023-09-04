@@ -119,7 +119,7 @@ export const Home = () => {
         handleFIlterByActivities={handleFIlterByActivities}
       />
       <div className={styles.welcomeContainer}>
-        <h1>Bienvenido a Countries App {user && user.name}</h1>
+        <h1>Bienvenido/a a Countries App {user && user.name} 👋</h1>
       </div>
       <div className={styles.cardContainer}>
         {countriesFilter

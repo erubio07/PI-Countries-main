@@ -74,7 +74,7 @@ export const getActivitiesUser = (id) => {
 };
 
 export const postActivity = (info) => {
-  console.log(info);
+  // console.log(info);
   return async function (dispatch) {
     let activity = await axios.post("http://localhost:3001/activities", info);
     return activity;
@@ -90,7 +90,7 @@ export const filterByContinent = (continent) => {
 };
 
 export const filterByActivities = (value) => {
-  console.log(value);
+  // console.log(value);
   if (value === "-") {
     return async function (dispatch) {
       let allCountries = await axios.get("http://localhost:3001/countries");
@@ -158,12 +158,12 @@ export const addFavorites = (info) => {
 };
 
 export const getFavorites = (id) => {
-  console.log(id);
+  // console.log(id);
   return async function (dispatch) {
     let favorites = await axios.post("http://localhost:3001/favorites/get", {
       id,
     });
-    console.log(favorites);
+    // console.log(favorites);
     return dispatch({
       type: GET_FAVORITES,
       payload: favorites.data,
