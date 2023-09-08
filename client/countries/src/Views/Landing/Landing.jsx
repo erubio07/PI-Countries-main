@@ -8,12 +8,15 @@ import { useAuth } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
 import { getUser } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 function Landing() {
   const auth = useAuth();
   // console.log(auth);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  // console.log(showPass);
   const [error, setError] = useState({});
   // console.log(user);
   // console.log(password);
@@ -143,14 +146,62 @@ function Landing() {
         />
         {error.username && <p className={styles.error}>{error.username}</p>}
         <label className={styles.label}>Password</label>
-        <input
-          className={styles.input}
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => handlePassword(e)}
-        />
-        {error.password && <p className={styles.error}>{error.password}</p>}
+        <div className={styles.inputContainer}>
+          {!showPass ? (
+            <>
+              <input
+                className={styles.input}
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) => handlePassword(e)}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                style={{
+                  display: "inline-block",
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <AiOutlineEyeInvisible
+                  style={{ color: "#120366", fontSize: "18px" }}
+                />
+              </button>
+            </>
+          ) : (
+            <>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="password"
+                value={password}
+                onChange={(e) => handlePassword(e)}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                style={{
+                  display: "inline-block",
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <AiOutlineEye style={{ color: "#120366", fontSize: "18px" }} />
+              </button>
+            </>
+          )}
+
+          {error.password && (
+            <p
+              className={styles.error}
+              style={{ width: "100px", marginLeft: "34px" }}
+            >
+              {error.password}
+            </p>
+          )}
+        </div>
         <button className={styles.button}>Login</button>
         <p className={styles.text}>
           No tienes una cuenta? <NavLink to="/signup">Registrate</NavLink>

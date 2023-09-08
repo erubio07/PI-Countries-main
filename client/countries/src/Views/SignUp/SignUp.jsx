@@ -9,7 +9,7 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
-  console.log(error);
+  // console.log(error);
   const navigate = useNavigate();
 
   const validate = (e) => {
@@ -29,9 +29,13 @@ const SignUp = () => {
     if (!password) {
       error.password = "Campo requerido";
     }
-    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/g.test(password)) {
+    if (
+      /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/g.test(
+        password
+      )
+    ) {
       error.password =
-        "La contraseña debe tener al entre 8 y 15 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. No puede contener caracteres especiales";
+        "La contraseña debe tener al menos 8 caracteres, al menos dos dígitos, al menos una minúscula, al menos una mayúscula al menos un caractere especial";
     }
 
     return error;

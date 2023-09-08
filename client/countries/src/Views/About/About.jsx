@@ -1,5 +1,13 @@
 import React from "react";
 import styles from "./About.module.css";
+import postgres from "./postgres-icon.png";
+import express from "./express-icon.png";
+import sequelize from "./sequelize-icon.png";
+import jwt from "./jwt-icon.png";
+import react from "./react-icon.png";
+import redux from "./redux-icon.png";
+import css from "./css-icon.png";
+import sweetalert from "./sweetalert2-icon.png";
 
 function About() {
   const userId = localStorage.getItem("userId");
@@ -34,7 +42,9 @@ function About() {
           </p>
           <div className={styles.technologiesList}>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={postgres} alt="postgres" />
+              </span>
               <h3>PostgreSQL:</h3>
               <p>
                 Una robusta base de datos relacional que proporciona una sólida
@@ -42,7 +52,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={express} alt="express" />
+              </span>
               <h3>Express:</h3>
               <p>
                 Un framework de Node.js que facilita la creación de aplicaciones
@@ -50,7 +62,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={sequelize} alt="sequelize" />
+              </span>
               <h3>Sequelize:</h3>
               <p>
                 Una poderosa ORM (Object-Relational Mapping) que simplifica la
@@ -58,7 +72,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={jwt} alt="jwt" />
+              </span>
               <h3>JSON Web Token:</h3>
               <p>
                 Una tecnología de autenticación segura que garantiza la
@@ -66,7 +82,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={react} alt="react" />
+              </span>
               <h3>React:</h3>
               <p>
                 Una biblioteca de JavaScript para la construcción de interfaces
@@ -74,7 +92,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={redux} alt="redux" />
+              </span>
               <h3>Redux:</h3>
               <p>
                 Un estado global para la gestión eficiente de datos y la
@@ -82,7 +102,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={css} alt="css" />
+              </span>
               <h3>CSS:</h3>
               <p>
                 Estilización cuidadosa y personalizada para una experiencia de
@@ -90,7 +112,9 @@ function About() {
               </p>
             </div>
             <div className={styles.technologyItem}>
-              <span>👉</span>
+              <span>
+                <img src={sweetalert} alt="sweetalert" />
+              </span>
               <h3>Sweet Alert para las Notificaciones:</h3>
               <p>
                 Integración de Sweet Alert para proporcionar notificaciones
