@@ -14,52 +14,60 @@ export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   // console.log(userId);
 
+  //Estado para medir el tiempo de la última actividad
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  // console.log(lastActivityTime)
+
+  //Tiempo de inactividad para cerrar sesión
+  const inactivity = 15 * 60 * 1000
+  // console.log(inactivity)
+
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       const decodedToken = jwt_decode(accessToken);
       setUserId(decodedToken.id);
-      // console.log(decodedToken);
+       // console.log(decodedToken);
       const currentTime = Date.now() / 1000;
       // console.log(currentTime);
 
       if (decodedToken.exp < currentTime) {
-        const refreshToken = localStorage.getItem("refreshToken");
-        if (refreshToken) {
-          const refreshTokenOnserver = async () => {
-            try {
-              const data = await axios.post(
-                "http://localhost:3001/refreshtoken",
-                { refreshToken }
-              );
-              if (data.statusText === "OK") {
-                const { accessToken: newAccessToken } = data;
-                console.log(data);
-                localStorage.setItem("accessToken", newAccessToken);
-                setIsAuthenticated(true);
-              } else {
-                const errorData = data;
-                console.log("Token refresh error:", errorData.message);
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("refreshToken");
-                setIsAuthenticated(false);
-              }
-            } catch (error) {
-              console.error("Error during token refresh:", error);
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken");
-              setIsAuthenticated(false);
-            }
-          };
-          refreshTokenOnserver();
-        } else {
-          setIsAuthenticated(false);
-        }
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userId");
+        setIsAuthenticated(false)
       } else {
         setIsAuthenticated(true);
       }
     }
-  }, []);
+
+    //función para registrar la última actividad
+    const activityListener = () => {
+      setLastActivityTime((Date.now()))
+    };
+    // Registro de actividades
+    window.addEventListener("mousemove", activityListener);
+    window.addEventListener("keypress", activityListener);
+    window.addEventListener(("click"), activityListener);
+
+    const inactivityTimer = setInterval(() => {
+      const currentTime = Date.now();
+        // Si el usuario está inactivo durante el tiempo límite, cierra la sesión
+      if (currentTime - lastActivityTime >= inactivity) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userId");
+        setIsAuthenticated(false);
+      }
+    }, 1000);
+
+      // Limpieza al desmontar el componente
+    return () => {
+      window.removeEventListener("mousemove", activityListener);
+      window.removeEventListener("keypress", activityListener);
+      clearInterval(inactivityTimer);
+    };
+  }, [lastActivityTime]);
 
   const logOut = () => {
     localStorage.removeItem("accessToken");
