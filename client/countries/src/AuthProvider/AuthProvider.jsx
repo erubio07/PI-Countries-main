@@ -14,12 +14,8 @@ export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   // console.log(userId);
 
-  //Estado para medir el tiempo de la última actividad
-  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  // console.log(lastActivityTime)
-
   //Tiempo de inactividad para cerrar sesión
-  const inactivity = 15 * 60 * 1000
+  const inactivity = 15 * 60 * 1000;
   // console.log(inactivity)
 
   useEffect(() => {
@@ -27,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     if (accessToken) {
       const decodedToken = jwt_decode(accessToken);
       setUserId(decodedToken.id);
-       // console.log(decodedToken);
+      // console.log(decodedToken);
       const currentTime = Date.now() / 1000;
       // console.log(currentTime);
 
@@ -35,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("userId");
-        setIsAuthenticated(false)
+        setIsAuthenticated(false);
       } else {
         setIsAuthenticated(true);
       }
@@ -43,17 +39,21 @@ export const AuthProvider = ({ children }) => {
 
     //función para registrar la última actividad
     const activityListener = () => {
-      setLastActivityTime((Date.now()))
+      localStorage.setItem("lastActivityTime", Date.now());
+      //   console.log(localStorage.getItem("lastActivityTime"));
     };
     // Registro de actividades
     window.addEventListener("mousemove", activityListener);
     window.addEventListener("keypress", activityListener);
-    window.addEventListener(("click"), activityListener);
+    window.addEventListener("click", activityListener);
 
     const inactivityTimer = setInterval(() => {
       const currentTime = Date.now();
-        // Si el usuario está inactivo durante el tiempo límite, cierra la sesión
-      if (currentTime - lastActivityTime >= inactivity) {
+      // Si el usuario está inactivo durante el tiempo límite, cierra la sesión
+      if (
+        currentTime - localStorage.getItem("lastActivityTime") >=
+        inactivity
+      ) {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("userId");
@@ -61,13 +61,13 @@ export const AuthProvider = ({ children }) => {
       }
     }, 1000);
 
-      // Limpieza al desmontar el componente
+    // Limpieza al desmontar el componente
     return () => {
       window.removeEventListener("mousemove", activityListener);
       window.removeEventListener("keypress", activityListener);
       clearInterval(inactivityTimer);
     };
-  }, [lastActivityTime]);
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem("accessToken");
